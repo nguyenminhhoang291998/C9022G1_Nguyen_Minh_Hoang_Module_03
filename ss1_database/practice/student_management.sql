@@ -28,9 +28,14 @@ age int,
 country varchar(30)
 );
 
+insert into teacher values(1,'Huy',25,'Viet Nam'),(2,'Andy',34,'England');
+insert into teacher (age,id,country,name_teacher) values(28,4,'Brazil','Fred');
 
+select * from teacher;
+select name_teacher from teacher;
 
+set sql_safe_updates =0;
+set sql_safe_updates =1;
+update teacher set name_teacher='Brown' where name_teacher='Andy';
 
-
-
-
+delete from teacher where name_teacher = 'Fred';
