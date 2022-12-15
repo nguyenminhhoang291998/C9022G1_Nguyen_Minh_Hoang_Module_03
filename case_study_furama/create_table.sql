@@ -28,13 +28,13 @@ create table nhan_vien(
 	ma_vi_tri int,
 	ma_trinh_do int,
 	ma_bo_phan int,
-	constraint fk_nhanvien_mavitri
+	
 	foreign key(ma_vi_tri)
 	references vi_tri(ma_vi_tri),
-	constraint fk_nhanvien_matrinhdo
+
 	foreign key(ma_trinh_do)
 	references trinh_do(ma_trinh_do),
-	constraint fk_nhanvien_bophan
+    
 	foreign key(ma_bo_phan)
 	references bo_phan(ma_bo_phan)
 );
@@ -54,7 +54,7 @@ create table khach_hang(
 	so_dien_thoai varchar(45),
 	email varchar(45),
 	dia_chi varchar(45),
-	constraint fk_khachhang_loaikhach
+
     foreign key(ma_loai_khach) 
     references loai_khach(ma_loai_khach)
 );
