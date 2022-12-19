@@ -49,13 +49,21 @@ from
   join loai_dich_vu l on d.ma_loai_dich_vu = l.ma_loai_dich_vu 
   join hop_dong h on d.ma_dich_vu = d.ma_dich_vu 
 where 
-d.ma_dich_vu not in (
+d.ma_dich_vu in (
     select 
       ma_dich_vu 
     from 
       hop_dong 
     where 
-      year(h.ngay_lam_hop_dong) = 2021
+      year(ngay_lam_hop_dong) = 2020
+  ) 
+and d.ma_dich_vu not in (
+    select 
+      ma_dich_vu 
+    from 
+      hop_dong 
+    where 
+      year(ngay_lam_hop_dong) = 2021
   ) 
 group by 
   d.ma_dich_vu;
