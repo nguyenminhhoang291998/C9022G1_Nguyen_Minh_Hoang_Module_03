@@ -14,6 +14,18 @@ where l.ten_loai_khach = 'diamond' and (k.dia_chi like "%vinh" or k.dia_chi like
 -- trên việc sum so_luong ở dich_vu_di_kem), tien_dat_coc của tất cả các dịch vụ đã
 -- từng được khách hàng đặt vào 3 tháng cuối năm 2020 nhưng chưa từng được khách hàng
 -- đặt vào 6 tháng đầu năm 2021.
+select h.ma_hop_dong, n.ho_ten, k.ho_ten, k.so_dien_thoai, d.ten_dich_vu,
+sum(hd.so_luong), h.tien_dat_coc 
+from hop_dong h 
+	 join nhan_vien n on h.ma_nhan_vien = n.ma_nhan_vien
+    join khach_hang k on h.ma_khach_hang = k.ma_khach_hang
+    join dich_vu d on h.ma_dich_vu = d.ma_dich_vu
+    join hop_dong_chi_tiet hd on h.ma_hop_dong = hd.ma_hop_dong
+  where h.ma_hop_dong in (select ma_hop_dong from hop_dong where year(ngay_lam_hop_dong) = 2020 and quarter(ngay_lam_hop_dong)=4)
+and h.ma_hop_dong not in (select ma_hop_dong from hop_dong where year(ngay_lam_hop_dong) = 2021 and quarter(ngay_lam_hop_dong) in (1,2))
+    group by h.ma_hop_dong
+;
+
 
 -- 13.	Hiển thị thông tin các Dịch vụ đi kèm được sử dụng nhiều nhất bởi các Khách hàng
 -- đã đặt phòng. (Lưu ý là có thể có nhiều dịch vụ có số lần sử dụng nhiều như nhau).
