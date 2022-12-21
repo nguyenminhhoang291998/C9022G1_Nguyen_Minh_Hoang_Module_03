@@ -86,6 +86,11 @@ having
 -- 14.	Hiển thị thông tin tất cả các Dịch vụ đi kèm chỉ mới được sử dụng một lần duy
 -- nhất. Thông tin hiển thị bao gồm ma_hop_dong, ten_loai_dich_vu, ten_dich_vu_di_kem,
 -- so_lan_su_dung (được tính dựa trên việc count các ma_dich_vu_di_kem).
+-- Tắt chế độ của mySQL
+SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
+-- Mở chế độ của mySQL như cũ
+ SET sql_mode=(SELECT CONCAT(@@sql_mode, ',ONLY_FULL_GROUP_BY'));
+ 
 select 
   h.ma_hop_dong, 
   l.ten_loai_dich_vu, 
@@ -100,7 +105,7 @@ from
 group by 
   hd.ma_dich_vu_di_kem 
 having 
-  count(hd.ma_dich_vu_di_kem) = 1 
+  so_lan_su_dung = 1 
 order by 
   hd.ma_hop_dong;
 
@@ -127,7 +132,3 @@ having
   count(h.ma_nhan_vien) <= 3 
 order by 
   n.ma_nhan_vien;
-
-
-
-

@@ -71,12 +71,7 @@ select
   d.ten_dich_vu, 
   h.ngay_lam_hop_dong, 
   h.ngay_ket_thuc, 
-  ifnull(
-    (
-      d.chi_phi_thue + sum(hd.so_luong * dv.gia)
-    ), 
-    d.chi_phi_thue
-  ) as "Tổng tiền" 
+   (ifnull(d.chi_phi_thue,0) + sum(ifnull(hd.so_luong,0)*ifnull(dv.gia,0))) as tong_tien
 from 
   khach_hang k 
   left join loai_khach l on k.ma_loai_khach = l.ma_loai_khach 
