@@ -1,0 +1,30 @@
+body {
+    font-family: Verdana,sans-serif;
+    font-size: 0.9em;
+}
+
+header, footer{
+    background: black;
+    color: aliceblue;
+    padding: 10px;
+}
+section{
+    margin: 5px;
+    padding: 10px;
+    background: darkgray;
+}
+
+article{
+    background-color: aliceblue;
+    margin: 5px;
+    padding: 10px;
+}
+
+nav ul{
+    padding: 0;
+}
+nav li{
+    margin: 5px;
+    list-style: none;
+    display: inline;
+}
