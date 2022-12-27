@@ -4494,8 +4494,8 @@ textarea.form-control-lg {
   word-wrap: break-word;
   background-color: #fff;
   background-clip: border-box;
-  border: 1px solid rgba(0, 0, 0, 0.125);
-  border-radius: 0.25rem;
+  border: 5px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.5rem;
 }
 .card > hr {
   margin-right: 0;
@@ -6044,13 +6044,13 @@ textarea.form-control-lg {
 .carousel-control-prev,
 .carousel-control-next {
   position: absolute;
-  top: 0;
+  top: 10px;
   bottom: 0;
   z-index: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 15%;
+  width: 2%;
   padding: 0;
   color: #fff;
   text-align: center;
