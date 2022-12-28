@@ -35,3 +35,17 @@
     box-sizing: border-box;
 }
 
+.footer-page{
+    background-color: #a69f9f;
+    height: 100px;
+}
+.footer-page li{
+    margin: 30px 7px;
+    font-family: Arial, serif;
+    font-size: 20px;
+    color: #000000;
+}
+
+.footer-page a{
+    color: #262424;
+}
