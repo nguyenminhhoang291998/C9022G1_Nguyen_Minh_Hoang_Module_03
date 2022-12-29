@@ -1,0 +1,271 @@
+@media only screen and (max-width: 740px ) {
+    .col-s-1 {
+        width: 8.33333%;
+    }
+
+    .col-s-2 {
+        width: 16.66667%;
+    }
+
+    .col-s-3 {
+        width: 25%;
+    }
+
+    .col-s-4 {
+        width: 33.33333%;
+    }
+
+    .col-s-5 {
+        width: 41.66667%;
+    }
+
+    .col-s-6 {
+        width: 50%;
+    }
+
+    .col-s-7 {
+        width: 58.33333%;
+    }
+
+    .col-s-8 {
+        width: 66.66667%;
+    }
+
+    .col-s-9 {
+        width: 75%;
+    }
+
+    .col-s-10 {
+        width: 83.33333%;
+    }
+
+    .col-s-11 {
+        width: 91.66667%;
+    }
+
+    .col-s-12 {
+        width: 100%;
+    }
+
+    /*tăng kích thước font cho dễ đọc*/
+    div {
+        font-size: 35px;
+        text-align: center;
+    }
+
+    .right{
+        margin: 60px 0;
+        width: 100%;
+
+    }
+
+    #header li {
+        padding-right: 10px;
+        padding-left: 10px;
+        font-size: 30px;
+        height: 65px;
+    }
+}
+
+/*Màn hinh laptop và máy tính bảng*/
+@media only screen and (min-width: 741px)and (max-width: 1240px) {
+    .col-m-1 {
+        width: 8.33333%;
+    }
+
+    .col-m-2 {
+        width: 16.66667%;
+    }
+
+    .col-m-3 {
+        width: 25%;
+    }
+
+    .col-m-4 {
+        width: 33.33333%;
+    }
+
+    .col-m-5 {
+        width: 41.66667%;
+    }
+
+    .col-m-6 {
+        width: 50%;
+    }
+
+    .col-m-7 {
+        width: 58.33333%;
+    }
+
+    .col-m-8 {
+        width: 66.66667%;
+    }
+
+    .col-m-9 {
+        width: 75%;
+    }
+
+    .col-m-10 {
+        width: 83.33333%;
+    }
+
+    .col-m-11 {
+        width: 91.66667%;
+    }
+
+    .col-m-12 {
+        width: 100%;
+    }
+    div {
+        font-size: 40px;
+        text-align: center;
+    }
+    #header li {
+        padding-right: 10px;
+        padding-left: 10px;
+        font-size: 30px;
+        height: 65px;
+    }
+    .right{
+        margin: 60px 0;
+        width: 100%;
+
+    }
+}
+
+/*Màn hình máy tính pc và tivi smart*/
+@media only screen and (min-width: 1241px) {
+    .col-l-1 {
+        width: 8.33333%;
+    }
+
+    .col-l-2 {
+        width: 16.66667%;
+    }
+
+    .col-l-3 {
+        width: 25%;
+    }
+
+    .col-l-4 {
+        width: 33.33333%;
+    }
+
+    .col-l-5 {
+        width: 41.66667%;
+    }
+
+    .col-l-6 {
+        width: 50%;
+    }
+
+    .col-l-7 {
+        width: 58.33333%;
+    }
+
+    .col-l-8 {
+        width: 66.66667%;
+    }
+
+    .col-l-9 {
+        width: 75%;
+    }
+
+    .col-l-10 {
+        width: 83.33333%;
+    }
+
+    .col-l-11 {
+        width: 91.66667%;
+    }
+
+    .col-l-12 {
+        width: 100%;
+    }
+}
+
+body {
+    font-family: Arial, serif;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#header {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background-color: #383535;
+    color: #979a9d;
+    height: 65px;
+    line-height: 65px;
+    text-align: center;
+    justify-content: space-between;
+}
+
+#header li:hover {
+    background-color: black;
+    color: aliceblue;
+}
+
+.left li {
+    list-style: none;
+    margin-bottom: 20px;
+    color: #5053d3;
+}
+
+.left, .right {
+    /*height: 1200px;*/
+    margin-top: 60px;
+    text-align: center;
+    background-color: #f5ebeb;
+}
+
+ul {
+    padding: 0;
+}
+
+.contain {
+    height: 1000px;
+    margin-top: 60px;
+    box-sizing: border-box;
+    padding: 2%;
+    text-align: left;
+}
+
+.right li {
+    list-style: none;
+    border: 1px solid #decfcf;
+    background-color: #f3ecec;
+    margin: 10px;
+    padding: 20px 30px;
+    border-radius: 5px;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding-top: 30px;
+    background-color: #545252;
+    height: 50px;
+    text-align: center;
+    color: #f5ebeb;
+}
+
+#header ul {
+    margin: 0;
+    padding: 0;
+}
+
+#header li {
+    float: left;
+    width: 100px;
+    list-style: none;
+    text-align: center;
+}
+
