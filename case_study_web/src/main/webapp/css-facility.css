@@ -1,0 +1,10 @@
+h2{
+    text-align: center;
+}
+
+body{
+    background-color: rgba(210, 224, 196, 0.54);
+}
+td, th{
+    text-align: center;
+}

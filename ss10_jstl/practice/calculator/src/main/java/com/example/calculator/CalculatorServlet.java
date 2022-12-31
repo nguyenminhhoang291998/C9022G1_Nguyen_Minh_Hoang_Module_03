@@ -18,26 +18,21 @@ public class CalculatorServlet extends HttpServlet {
         String operator = request.getParameter("operator");
         double firstOperand = Double.parseDouble(request.getParameter("firstOperand"));
         double secondOperand = Double.parseDouble(request.getParameter("secondOperand"));
-        double result = 0;
         String resultString="";
         switch (operator){
             case "addition":
-                 result = firstOperand + secondOperand;
-                 resultString = firstOperand + " + " +secondOperand +" = "+ result;
+                 resultString = firstOperand + " + " +secondOperand +" = "+ (firstOperand + secondOperand);
                  break;
             case "subtraction":
-                result = firstOperand - secondOperand;
-                resultString = firstOperand + " - " +secondOperand +" = "+ result;
+                resultString = firstOperand + " - " +secondOperand +" = "+ (firstOperand - secondOperand);
                 break;
             case "multiplication":
-                result = firstOperand * secondOperand;
-                resultString = firstOperand + " * " +secondOperand +" = "+ result;
+                resultString = firstOperand + " * " +secondOperand +" = "+ (firstOperand * secondOperand);
                 break;
             case "division":
                 try {
                     calculator.calculate(secondOperand);
-                    result = firstOperand / secondOperand;
-                    resultString = firstOperand + " / " +secondOperand +" = "+ result;
+                    resultString = firstOperand + " / " +secondOperand +" = "+ (firstOperand / secondOperand);
                     break;
                 }catch (CalculatorException e){
                     resultString = e.getMessage();
