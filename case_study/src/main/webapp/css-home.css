@@ -19,15 +19,10 @@
 .address p{
     padding: 0 0 0 9%;
     margin: 0;
-    color: #2c2b2b;
+    color: #565353;
 }
 
-.header{
-    background-color: #f8f3f3;
-    font-family: "Gill Sans MT";
-    font-size: 15px;
-    height: 140px;
-}
+
 #position-address{
     margin-top: 6px;
 }
@@ -45,6 +40,14 @@
     margin: 2px 7px 0 0;
     float: left;
     width: 20px;
+}
+.header{
+    background-color: #f8f3f3;
+    font-family: "Gill Sans MT";
+    font-size: 15px;
+    height: 140px;
+    color: #565353;
+
 }
 .navbar{
     z-index: 1;
@@ -70,9 +73,8 @@
 }
 
 .form-control{
-    margin-left: 50px;
-
-    width: 150px;
+    /*margin-left: 50px;*/
+    width: 90%;
     border-radius: 30px;
 }
 

@@ -11,7 +11,14 @@ td, th, tr{
     align-items: center;
 }
 
+.form-control{
+    margin-left: 5%;
+}
 
+.message{
+    text-align: center;
+    color: red;
+}
 
 
 

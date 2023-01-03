@@ -11,7 +11,7 @@
 <head>
     <title>Service</title>
     <link rel="stylesheet" href="../bootstrap-5.1.3-dist/css/bootstrap.css">
-    <link rel="stylesheet" href="../css-view.css">
+    <link rel="stylesheet" href="../css-home.css">
     <link rel="stylesheet" href="../css-facility.css">
 </head>
 <body>
@@ -109,6 +109,7 @@
 </div>
 <div class="justify-content-center d-flex">
     <button type="button" class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#addModal">Add</button>
+
     <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -117,7 +118,8 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body m-0 p-0">
-                    <form class="form-horizontal" action="#">
+
+                    <form class="form-horizontal" action="/facility">
                         <div class="row form-group align-items-center m-2">
                             <div class=" col-sm-2">
                                 <label class="control-label" for="id">ID:</label></div>
@@ -139,8 +141,8 @@
                         </div>
 
                         <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" class="btn btn-default">Submit</button>
+                            <div class="d-flex justify-content-center">
+                                <button type="submit" class="btn btn-success">Submit</button>
                             </div>
                         </div>
                     </form>

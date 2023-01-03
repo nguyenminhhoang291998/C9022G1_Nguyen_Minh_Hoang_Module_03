@@ -11,7 +11,7 @@
     <title>Title</title>
     <link rel="stylesheet" href="../bootstrap-5.1.3-dist/css/bootstrap.css">
     <script src="../bootstrap-5.1.3-dist/js/bootstrap.js"></script>
-    <link rel="stylesheet" href="../css-view.css">
+    <link rel="stylesheet" href="../css-home.css">
 
 </head>
 <body>
@@ -23,10 +23,10 @@
         <a href="#">Employee</a>
     </button>
     <button>
-        <a href="#">Customer</a>
+        <a href="/customer">Customer</a>
     </button>
     <button>
-        <a href="/service">Service</a>
+        <a href="/facility">Service</a>
     </button>
     <button>
         <a href="#">Contract</a>
