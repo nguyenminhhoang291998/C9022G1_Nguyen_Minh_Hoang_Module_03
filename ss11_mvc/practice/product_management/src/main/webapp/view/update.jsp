@@ -20,7 +20,7 @@
 <form method="post">
     <div class="row">
         <p class="col-md-4">ID: </p>
-        <p class="col-md-8" value="${product.id}" name="${product.id}"></p>
+        <p class="col-md-8" value="${product.id}" name="id">${product.id}</p>
     </div>
 
     <div class="row">
