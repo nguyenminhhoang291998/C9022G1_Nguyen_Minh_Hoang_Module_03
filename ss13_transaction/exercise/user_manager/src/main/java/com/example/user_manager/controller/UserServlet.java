@@ -34,9 +34,25 @@ public class UserServlet extends HttpServlet {
             case "sort":
                 sortList(request, response);
                 break;
+            case "permision":
+                addUserPermision(request, response);
+                break;
+            case "test-without-tran":
+                testWithoutTran(request, response);
+                break;
             default:
                 listUser(request, response);
         }
+    }
+
+    private void testWithoutTran(HttpServletRequest request, HttpServletResponse response) {
+        this.userService.insertUpdateWithoutTransaction();
+    }
+
+    private void addUserPermision(HttpServletRequest request, HttpServletResponse response) {
+        User user = new User("quan", "quan.nguyen@codegym.vn", "vn");
+        int[] permision = {1, 2, 4};
+        this.userService.addUserTransaction(user,permision);
     }
 
     private void sortList(HttpServletRequest request, HttpServletResponse response) {

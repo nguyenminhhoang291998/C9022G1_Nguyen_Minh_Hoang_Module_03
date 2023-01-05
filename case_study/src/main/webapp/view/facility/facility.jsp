@@ -54,12 +54,99 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
                             </div>
                             <div class="modal-body">
-                                ...
+                                <div class="m-2 row">
+                                    <label class="col-sm-3 form-label"> Facility Type</label>
+                                    <div class="col-sm-9">
+                                        <input hidden type="text" name="facility_type_id" id="facilityTypeIdAdd">
+                                        <button type="button" onclick="addVilla()">Villa</button>
+                                        <button type="button" onclick="addHouse()">House</button>
+                                        <button type="button" onclick="addRoom()">Room</button>
+                                    </div>
+                                </div>
+
+
+                                <div class="m-2 row">
+                                    <label class="col-sm-3 col-form-label">Facility Name</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="nameAdd" name="name">
+                                    </div>
+                                </div>
+
+                                <div class="m-2 row">
+                                    <label class="col-sm-3 col-form-label">Area</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="areaAdd" name="area">
+                                    </div>
+                                </div>
+
+                                <div class="m-2 row">
+                                    <label class="col-sm-3 col-form-label">Cost</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="costAdd" name="cost">
+                                    </div>
+                                </div>
+
+                                <div class="m-2 row">
+                                    <label class="col-sm-3 col-form-label">Max People</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="maxPeopleAdd" name="max_people">
+                                    </div>
+                                </div>
+
+                                <div class="m-2 row">
+                                    <label class="col-sm-3 col-form-label">Rent Type Name</label>
+                                    <div class="col-sm-9">
+                                        <select class="form-select" name="rent_type_id" id="rentTypeAdd">
+                                            <c:forEach var="rt" items="${rentTypeList}">
+                                                <option value="${rt.id}">${rt.name}</option>
+                                            </c:forEach>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div id="standardRoomAdd">
+                                    <div class="m-2 row">
+                                        <label class="col-sm-3 col-form-label">Standard Room</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" name="standard_room">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="descriptionAdd">
+                                    <div class="m-2 row" >
+                                        <label class="col-sm-3 col-form-label">Description Other Convenience</label>
+                                        <div class="col-sm-9 ">
+                                            <input type="text" class="form-control" name="description_other_convenience">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="poolAreaAdd">
+                                    <div class="m-2 row" >
+                                        <label class="col-sm-3 col-form-label">Pool Area</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" name="pool_area">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="m-2 row" id="numberOfFloorsAdd">
+                                    <label class="col-sm-3 col-form-label">Number of Floors</label>
+                                    <div class="col-sm-9 ">
+                                        <input type="text" class="form-control" name="number_of_floors">
+                                    </div>
+                                </div>
+                                <div class="m-2 row" id="facilityFreeAdd">
+                                    <label class="col-sm-3  col-form-label">Facility Free</label>
+                                    <div class="col-sm-9 ">
+                                        <input type="text" class="form-control" name="facility_free">
+                                    </div>
+                                </div>
+
                             </div>
+
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                 <button type="button" class="btn btn-primary">Save changes</button>
@@ -151,7 +238,37 @@
         </div>
     </div>
 </div>
+    <script>
+    function addVilla() {
+        document.getElementById("facilityTypeIdAdd").value = 1;
+        document.getElementById("standardRoomAdd").style.display = 'block';
+        document.getElementById("descriptionAdd").style.display = 'block';
+        document.getElementById("poolAreaAdd").style.display = 'block';
+        document.getElementById("numberOfFloorAdd").style.display = 'block';
+        document.getElementById("facilityFreeAdd").style.display = 'none';
+    }
+
+    function addHouse() {
+        document.getElementById("facilityTypeIdAdd").value = 2;
+        document.getElementById("standardRoomAdd").style.display = 'block';
+        document.getElementById("descriptionAdd").style.display = 'block';
+        document.getElementById("poolAreaAdd").style.display = 'none';
+        document.getElementById("numberOfFloorAdd").style.display = 'block';
+        document.getElementById("facilityFreeAdd").style.display = 'none';
+    }
+
+    function addRoom() {
+        document.getElementById("facilityTypeIdAdd").value = 3;
+        document.getElementById("standardRoomAdd").style.display = "none";
+        document.getElementById("descriptionAdd").style.display = "none";
+        document.getElementById("poolAreaAdd").style.display = "none";
+        document.getElementById("numberOfFloorAdd").style.display = "none";
+        document.getElementById("facilityFreeAdd").style.display = "block";
+    }
+
+</script>
 <script src="../../bootstrap-5.1.3-dist/js/bootstrap.js"></script>
+
 </body>
 
 </html>

@@ -16,5 +16,9 @@ public interface IUserService {
      boolean updateUser(User user);
 
      List<User> findByCountry(String country);
+
+     void addUserTransaction(User user, int[] permisions);
+
+     public void insertUpdateWithoutTransaction();
 }
 

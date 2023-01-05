@@ -20,4 +20,14 @@ public interface IUserRepository {
      User getUserById(int id);
 
      boolean insertUserStore(User user);
-}
+
+     void addUserTransaction(User user, int[] permisions);
+
+     public void insertUpdateWithoutTransaction();
+
+     List<User> selectAllUseCallable();
+
+      boolean updateUserUseCallable(User user);
+
+      boolean deleteUserUseCallable(int id);
+     }

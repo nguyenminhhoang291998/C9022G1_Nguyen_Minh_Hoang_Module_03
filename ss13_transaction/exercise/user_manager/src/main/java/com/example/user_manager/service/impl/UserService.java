@@ -22,21 +22,34 @@ public class UserService implements IUserService {
 
     @Override
     public List<User> selectAllUsers() {
-        return this.userRepository.selectAllUsers();
+//        return this.userRepository.selectAllUsers();
+        return this.userRepository.selectAllUseCallable();
     }
 
     @Override
     public boolean deleteUser(int id) {
-        return this.userRepository.deleteUser(id);
+//        return this.userRepository.deleteUser(id);
+        return this.userRepository.deleteUserUseCallable(id);
     }
 
     @Override
     public boolean updateUser(User user) {
-        return this.userRepository.updateUser(user);
+//        return this.userRepository.updateUser(user);
+        return this.userRepository.updateUserUseCallable(user);
     }
 
     @Override
     public List<User> findByCountry(String country) {
         return this.userRepository.findByCountry(country);
+    }
+
+    @Override
+    public void addUserTransaction(User user, int[] permisions) {
+        this.userRepository.addUserTransaction(user,permisions);
+    }
+
+    @Override
+    public void insertUpdateWithoutTransaction() {
+        this.userRepository.insertUpdateWithoutTransaction();
     }
 }
