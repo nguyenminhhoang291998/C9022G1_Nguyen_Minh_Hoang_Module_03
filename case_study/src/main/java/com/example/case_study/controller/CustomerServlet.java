@@ -1,6 +1,8 @@
 package com.example.case_study.controller;
 
 import com.example.case_study.models.Customer;
+import com.example.case_study.services.customer.ICustomerService;
+import com.example.case_study.services.customer.impl.CustomerService;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -10,15 +12,7 @@ import java.util.*;
 
 @WebServlet(name = "CustomerServlet", value = "/customer")
 public class CustomerServlet extends HttpServlet {
-    private static final Map<Integer, Customer> customers = new HashMap<>();
-
-    static {
-        customers.put(1, new Customer(1, 1, "Nguyễn Văn Nam", "1997/02/05", true, "09432123123", "0905987787", "nam97@gmail.com", "Hà Nội"));
-        customers.put(2, new Customer(2, 2, "Nguyễn Thị Tâm", "1992/11/09", false, "98965445412", "0998654564", "tamnguyen@gmail.com", "Nam Định"));
-        customers.put(3, new Customer(3, 2, "Trần Chính", "1993/11/12", true, "02439876781", "0909888767", "chinhtran@gmail.com", "Bình Phước"));
-        customers.put(4, new Customer(4, 1, "Trần Công Thanh", "1987/09/05", true, "2016787098", "0908034341", "congthanh@gmail.com", "Quảng Nam"));
-        customers.put(5, new Customer(5, 1, "Nguyễn Đức", "1987/03/07", true, "1214543987", "0901232323", "duc87@gmail.com", "Hà Tĩnh"));
-    }
+    ICustomerService customerService = new CustomerService();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -29,15 +23,6 @@ public class CustomerServlet extends HttpServlet {
             action = "";
         }
         switch (action) {
-//            case "add":
-//                addCustomer(request, response);
-//                break;
-//            case "delete":
-//                deleteCustomer(request, response);
-//                break;
-//            case "edit":
-//                editCustomer(request, response);
-//                break;
             default:
                 showListCustomer(request, response);
                 break;
@@ -45,7 +30,7 @@ public class CustomerServlet extends HttpServlet {
     }
 
     private void showListCustomer(HttpServletRequest request, HttpServletResponse response) {
-        request.setAttribute("customerList", customers.values());
+        request.setAttribute("customerList", customerService.findAllCustomerList());
         try {
             request.getRequestDispatcher("view/customer/customer.jsp").forward(request, response);
         } catch (ServletException | IOException e) {
@@ -71,10 +56,7 @@ public class CustomerServlet extends HttpServlet {
             case "edit":
                 editCustomer(request, response);
                 break;
-
         }
-
-
     }
 
     private void editCustomer(HttpServletRequest request, HttpServletResponse response) {
@@ -84,26 +66,34 @@ public class CustomerServlet extends HttpServlet {
         String dayOfBirth = request.getParameter("editDayOfBirth");
         boolean gender = false;
         String editGender = request.getParameter("editGender");
-        if(Objects.equals(editGender, "male")){
+        if (Objects.equals(editGender, "male")) {
             gender = true;
         }
         String idCard = request.getParameter("editIdCard");
         String phoneNumber = request.getParameter("editPhoneNumber");
         String email = request.getParameter("editEmail");
         String address = request.getParameter("editAddress");
-        if (!customers.containsKey(id)) {
+        if(customerService.findCustomer(id)!=null){
+            boolean check = customerService.editCustomer(new Customer(id, customerTypeId, name, dayOfBirth, gender, idCard, phoneNumber, email, address));
+            if (!check) {
+                request.setAttribute("message", "Edit failed!");
+            } else {
+                request.setAttribute("message", "Edit successful!");
+            }
+        }else {
             request.setAttribute("message", "Edit failed because id already not exists!");
-        } else {
-            customers.put(id, new Customer(id, customerTypeId, name, dayOfBirth, gender, idCard, phoneNumber, email, address));
-            request.setAttribute("message", "Edit successful!");
         }
         showListCustomer(request, response);
     }
 
     private void deleteCustomer(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("deleteId"));
-        customers.remove(id);
-        request.setAttribute("message", "Delete successful!");
+        boolean check = customerService.deleteCustomer(id);
+        if (!check) {
+            request.setAttribute("message", "Delete failed!");
+        } else {
+            request.setAttribute("message", "Delete successful!");
+        }
         showListCustomer(request, response);
     }
 
@@ -114,19 +104,25 @@ public class CustomerServlet extends HttpServlet {
         String dayOfBirth = request.getParameter("newDayOfBirth");
         boolean gender = false;
         String newGender = request.getParameter("newGender");
-        if(Objects.equals(newGender, "male")){
+        if (Objects.equals(newGender, "male")) {
             gender = true;
         }
         String idCard = request.getParameter("newIdCard");
         String phoneNumber = request.getParameter("newPhoneNumber");
         String email = request.getParameter("newEmail");
         String address = request.getParameter("newAddress");
-        if (customers.containsKey(id)) {
+        if(customerService.findCustomer(id) == null){
+            boolean check = customerService.addCustomer(new Customer(id, customerTypeId, name, dayOfBirth, gender, idCard, phoneNumber, email, address));
+            if (!check) {
+                request.setAttribute("message", "Add failed!");
+            } else {
+                request.setAttribute("message", "Add successful!");
+            }
+        }else {
             request.setAttribute("message", "Add failed because id already exists!");
-        } else {
-            customers.put(id, new Customer(id, customerTypeId, name, dayOfBirth, gender, idCard, phoneNumber, email, address));
-            request.setAttribute("message", "Add successful!");
         }
+
         showListCustomer(request, response);
     }
+
 }
