@@ -1,5 +1,7 @@
 package com.example.case_study;
 
+import main.Sum;
+
 import java.io.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
@@ -22,6 +24,6 @@ public class HelloServlet extends HttpServlet {
         out.println("</body></html>");
     }
 
-    public void destroy() {
-    }
+
+
 }

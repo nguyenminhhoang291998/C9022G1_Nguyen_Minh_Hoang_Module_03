@@ -29,22 +29,22 @@ public class CustomerServlet extends HttpServlet {
             action = "";
         }
         switch (action) {
-            case "add":
-                addCustomer(request, response);
-                break;
-            case "delete":
-                deleteCustomer(request, response);
-                break;
-            case "edit":
-                editCustomer(request, response);
-                break;
+//            case "add":
+//                addCustomer(request, response);
+//                break;
+//            case "delete":
+//                deleteCustomer(request, response);
+//                break;
+//            case "edit":
+//                editCustomer(request, response);
+//                break;
             default:
-                showAllList(request, response);
+                showListCustomer(request, response);
                 break;
         }
     }
 
-    private void showAllList(HttpServletRequest request, HttpServletResponse response) {
+    private void showListCustomer(HttpServletRequest request, HttpServletResponse response) {
         request.setAttribute("customerList", customers.values());
         try {
             request.getRequestDispatcher("view/customer/customer.jsp").forward(request, response);
@@ -71,42 +71,62 @@ public class CustomerServlet extends HttpServlet {
             case "edit":
                 editCustomer(request, response);
                 break;
-            default:
-                break;
+
         }
 
 
     }
 
     private void editCustomer(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("editId"));
+        int customerTypeId = Integer.parseInt(request.getParameter("editCustomerTypeId"));
+        String name = request.getParameter("editName");
+        String dayOfBirth = request.getParameter("editDayOfBirth");
+        boolean gender = false;
+        String editGender = request.getParameter("editGender");
+        if(Objects.equals(editGender, "male")){
+            gender = true;
+        }
+        String idCard = request.getParameter("editIdCard");
+        String phoneNumber = request.getParameter("editPhoneNumber");
+        String email = request.getParameter("editEmail");
+        String address = request.getParameter("editAddress");
+        if (!customers.containsKey(id)) {
+            request.setAttribute("message", "Edit failed because id already not exists!");
+        } else {
+            customers.put(id, new Customer(id, customerTypeId, name, dayOfBirth, gender, idCard, phoneNumber, email, address));
+            request.setAttribute("message", "Edit successful!");
+        }
+        showListCustomer(request, response);
     }
 
     private void deleteCustomer(HttpServletRequest request, HttpServletResponse response) {
-        int id = Integer.parseInt(request.getParameter("id"));
+        int id = Integer.parseInt(request.getParameter("deleteId"));
         customers.remove(id);
         request.setAttribute("message", "Delete successful!");
-        showAllList(request, response);
+        showListCustomer(request, response);
     }
 
     private void addCustomer(HttpServletRequest request, HttpServletResponse response) {
-        int newId = Integer.parseInt(request.getParameter("new-id"));
-        int newCustomerTypeId = Integer.parseInt(request.getParameter("new-customer-type-id"));
-        String newName = request.getParameter("new-name");
-        String newDayOfBirth = request.getParameter("new-day-of-birth");
-        boolean newGender = true;
-        String newIdCard = request.getParameter("new-id-card");
-        String newPhoneNumber = request.getParameter("new-phone-number");
-        String newEmail = request.getParameter("new-email");
-        String newAddress = request.getParameter("new-address");
-
-        if (customers.containsKey(newId)) {
+        int id = Integer.parseInt(request.getParameter("newId"));
+        int customerTypeId = Integer.parseInt(request.getParameter("newCustomerTypeId"));
+        String name = request.getParameter("newName");
+        String dayOfBirth = request.getParameter("newDayOfBirth");
+        boolean gender = false;
+        String newGender = request.getParameter("newGender");
+        if(Objects.equals(newGender, "male")){
+            gender = true;
+        }
+        String idCard = request.getParameter("newIdCard");
+        String phoneNumber = request.getParameter("newPhoneNumber");
+        String email = request.getParameter("newEmail");
+        String address = request.getParameter("newAddress");
+        if (customers.containsKey(id)) {
             request.setAttribute("message", "Add failed because id already exists!");
         } else {
-            customers.put(newId, new Customer(newId, newCustomerTypeId, newName, newDayOfBirth, newGender, newIdCard, newPhoneNumber, newEmail, newAddress));
+            customers.put(id, new Customer(id, customerTypeId, name, dayOfBirth, gender, idCard, phoneNumber, email, address));
             request.setAttribute("message", "Add successful!");
         }
-        List<Customer> customerList = new ArrayList<>(customers.values());
-        request.setAttribute("customerList", customerList);
-        showAllList(request, response);
+        showListCustomer(request, response);
     }
 }

@@ -29,7 +29,7 @@
         <a href="/facility">Service</a>
     </button>
     <button>
-        <a href="#">Contract</a>
+        <a href="/contract">Contract</a>
     </button>
     <div class="searchbar">
         <input class="search_input" type="text" name="" placeholder="Search...">
