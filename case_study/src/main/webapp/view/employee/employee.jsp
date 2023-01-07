@@ -12,6 +12,9 @@
     <title>Employee</title>
     <link rel="stylesheet" href="../../bootstrap-5.1.3-dist/css/bootstrap.css">
     <link rel="stylesheet" href="../../css-customer.css">
+    <%--  phân trang--%>
+    <link rel="stylesheet" href="../../bootstrap520/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../datatables/css/dataTables.bootstrap5.min.css">
 
 </head>
 <body>
@@ -26,21 +29,19 @@
 
 <div class="table-list">
     <div class="table-responsive">
-        <table class="table table-striped">
+        <table class="table table-striped w-100" id="tableEmployee">
             <thead style="vertical-align: top; text-align: center">
             <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Name</th>
-                <th scope="col">Day Of Birth</th>
-                <th scope="col">ID card</th>
-                <th scope="col">Salary</th>
-                <th scope="col">Phone Number</th>
-                <th scope="col">Email</th>
-                <th scope="col">Address</th>
-                <th scope="col">Position Id</th>
-                <th scope="col">Education Degree Id</th>
-                <th scope="col">Division Id</th>
-                <th scope="col">User Name</th>
+                <th scope="col" class="text-center">ID</th>
+                <th scope="col" class="text-center">Name</th>
+                <th scope="col" class="text-center">Day Of Birth</th>
+                <th scope="col" class="text-center">ID card</th>
+                <th scope="col" class="text-center">Salary</th>
+                <th scope="col" class="text-center">Phone Number</th>
+                <th scope="col" class="text-center">Email</th>
+                <th scope="col" class="text-center">Address</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
@@ -54,10 +55,6 @@
                     <td>${employee.phoneNumber}</td>
                     <td>${employee.email}</td>
                     <td>${employee.address}</td>
-                    <td>${employee.positionId}</td>
-                    <td>${employee.educationDegreeId}</td>
-                    <td>${employee.divisionId}</td>
-                    <td>${employee.userName}</td>
                     <td>
                         <button onclick="infoEdit('${employee.id}','${employee.name}','${employee.dayOfBirth}',
                                 '${employee.idCard}','${employee.salary}','${employee.phoneNumber}','${employee.email}',
@@ -350,5 +347,19 @@
 </script>
 
 <script src="../../bootstrap-5.1.3-dist/js/bootstrap.js"></script>
+<%--Phân trang--%>
+<script src="../../jquery/jquery-3.5.1.min.js"></script>
+<script src="../../datatables/js/jquery.dataTables.min.js"></script>
+<script src="../../datatables/js/dataTables.bootstrap5.min.js"></script>
+<script>
+    $(document).ready(function (){
+        $('#tableEmployee').dataTable({
+            "dom": 'lrtip',
+            "lengthChange": false,
+            "pageLength": 5
+        });
+
+    });
+</script>
 </body>
 </html>

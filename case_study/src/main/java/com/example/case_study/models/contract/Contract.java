@@ -1,9 +1,11 @@
-package com.example.case_study.models;
+package com.example.case_study.models.contract;
+
+import java.sql.Date;
 
 public class Contract {
     private int id;
-    private String startDay;
-    private String endDay;
+    private Date startDay;
+    private Date endDay;
     private double deposit;
     private int employeeId;
     private int customerId;
@@ -20,19 +22,19 @@ public class Contract {
         this.id = id;
     }
 
-    public String getStartDay() {
+    public Date getStartDay() {
         return startDay;
     }
 
-    public void setStartDay(String startDay) {
+    public void setStartDay(Date startDay) {
         this.startDay = startDay;
     }
 
-    public String getEndDay() {
+    public Date getEndDay() {
         return endDay;
     }
 
-    public void setEndDay(String endDay) {
+    public void setEndDay(Date endDay) {
         this.endDay = endDay;
     }
 
@@ -68,7 +70,7 @@ public class Contract {
         this.facilityId = facilityId;
     }
 
-    public Contract(int id, String startDay, String endDay, double deposit, int employeeId, int customerId, int facilityId) {
+    public Contract(int id, Date startDay, Date endDay, int deposit, int employeeId, int customerId, int facilityId) {
         this.id = id;
         this.startDay = startDay;
         this.endDay = endDay;

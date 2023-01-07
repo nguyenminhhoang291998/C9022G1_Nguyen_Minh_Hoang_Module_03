@@ -11,8 +11,8 @@ import java.util.List;
 public class CustomerRepository implements ICustomerRepository {
     private static final String SELECT_ALL_CUSTOMER = "select * from customer";
     private static final String INSERT_INTO_CUSTOMER_LIST = "INSERT INTO customer (id, customer_type_id, name, day_of_birth, gender, id_card, phone_number, email, address) values(?,?,?,?,?,?,?,?,?)";
-    private static final String UPDATE_CUSTOMERS = "UPDATE customer SET customer_type_id = ?, name = ?, day_of_birth = ?, gender = ?, id_card = ?, phone_number = ?, email = ?, address = ? WHERE id = ?";
-    private static final String DELETE_CUSTOMERS = "DELETE FROM customer WHERE id = ?";
+    private static final String UPDATE_CUSTOMER = "UPDATE customer SET customer_type_id = ?, name = ?, day_of_birth = ?, gender = ?, id_card = ?, phone_number = ?, email = ?, address = ? WHERE id = ?";
+    private static final String DELETE_CUSTOMER = "DELETE FROM customer WHERE id = ?";
     private static final String FIND_CUSTOMER = "SELECT * FROM customer WHERE id = ?";
 
     @Override
@@ -64,7 +64,7 @@ public class CustomerRepository implements ICustomerRepository {
     public boolean editCustomer(Customer customer) {
         Connection connection = BaseRepository.getConnectDB();
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_CUSTOMERS);
+            PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_CUSTOMER);
             preparedStatement.setInt(1, customer.getCustomerTypeId());
             preparedStatement.setString(2, customer.getName());
             preparedStatement.setString(3, customer.getDayOfBirth());
@@ -84,7 +84,7 @@ public class CustomerRepository implements ICustomerRepository {
     public boolean deleteCustomer(int id) {
         Connection connection = BaseRepository.getConnectDB();
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(DELETE_CUSTOMERS);
+            PreparedStatement preparedStatement = connection.prepareStatement(DELETE_CUSTOMER);
             preparedStatement.setInt(1, id);
             return preparedStatement.executeUpdate() > 0;
         } catch (SQLException e) {

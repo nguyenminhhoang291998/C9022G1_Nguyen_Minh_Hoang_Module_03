@@ -13,6 +13,9 @@
     <link rel="stylesheet" href="../../bootstrap-5.1.3-dist/css/bootstrap.css">
     <link rel="stylesheet" href="../../css-home.css">
     <link rel="stylesheet" href="../../css-customer.css">
+    <%--  phân trang--%>
+    <link rel="stylesheet" href="../../bootstrap520/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../datatables/css/dataTables.bootstrap5.min.css">
 </head>
 <body>
 <c:import url="../home/navbar.jsp"></c:import>
@@ -25,18 +28,20 @@
 
 <div class="table-list">
     <div class="table-responsive">
-        <table class="table table-striped">
+        <table class="table table-striped w-100" id="tableCustomer">
             <thead style="vertical-align: top; text-align: center">
             <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Customer Type ID</th>
-                <th scope="col">Name</th>
-                <th scope="col">Day Of Birth</th>
-                <th scope="col">Gender</th>
-                <th scope="col">ID card</th>
-                <th scope="col">Phone Number</th>
-                <th scope="col">Email</th>
-                <th scope="col">Address</th>
+                <th scope="col" class="text-center">ID</th>
+                <th scope="col" class="text-center">Customer Type ID</th>
+                <th scope="col" class="text-center">Name</th>
+                <th scope="col" class="text-center">Day Of Birth</th>
+                <th scope="col" class="text-center">Gender</th>
+                <th scope="col" class="text-center">ID card</th>
+                <th scope="col" class="text-center">Phone Number</th>
+                <th scope="col" class="text-center">Email</th>
+                <th scope="col" class="text-center">Address</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
@@ -311,5 +316,19 @@
     }
 </script>
 <script src="../../bootstrap-5.1.3-dist/js/bootstrap.js"></script>
+<%--Phân trang--%>
+<script src="../../jquery/jquery-3.5.1.min.js"></script>
+<script src="../../datatables/js/jquery.dataTables.min.js"></script>
+<script src="../../datatables/js/dataTables.bootstrap5.min.js"></script>
+<script>
+    $(document).ready(function (){
+        $('#tableCustomer').dataTable({
+            "dom": 'lrtip',
+            "lengthChange": false,
+            "pageLength": 5
+        });
+
+    });
+</script>
 </body>
 </html>

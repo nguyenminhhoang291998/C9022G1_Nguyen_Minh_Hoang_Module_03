@@ -10,179 +10,179 @@
 <html>
 <head>
     <title>Contract</title>
-  <link rel="stylesheet" href="../../bootstrap-5.1.3-dist/css/bootstrap.css">
-  <link rel="stylesheet" href="../../css-home.css">
-  <link rel="stylesheet" href="../../css-customer.css">
+    <link rel="stylesheet" href="../../bootstrap-5.1.3-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../../css-home.css">
+    <link rel="stylesheet" href="../../css-customer.css">
+
+    <%--  phân trang--%>
+    <link rel="stylesheet" href="../../bootstrap520/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../datatables/css/dataTables.bootstrap5.min.css">
+
 </head>
 <body>
 <c:import url="../home/navbar.jsp"></c:import>
 <h2>Contract</h2>
 <p class="message">
-  <c:if test='${requestScope["message"] != null}'>
-    <span class="message">${requestScope["message"]}</span>
-  </c:if>
+    <c:if test='${requestScope["message"] != null}'>
+        <span class="message">${requestScope["message"]}</span>
+    </c:if>
 </p>
 <div class="table-list">
-  <div class="table-responsive">
-    <table class="table table-striped">
-      <thead style="vertical-align: top; text-align: center">
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Facility</th>
-        <th scope="col">Customer</th>
-        <th scope="col">Start day</th>
-        <th scope="col">End day</th>
-        <th scope="col">Deposit</th>
-        <th scope="col">Total cost</th>
-        <th colspan="2" scope="col">Attach facility</th>
-      </tr>
-      </thead>
-      <tbody>
-      <c:forEach var="contract" items="${contractList}" varStatus="vt">
-        <tr>
-          <td>${vt.count}</td>
-          <td>${contract.facilityId}</td>
-          <td>${contract.customerId}</td>
-          <td>${contract.startDay}</td>
-          <td>${contract.endDay}</td>
-          <td>${contract.deposit}</td>
-          <td></td>
-          <td>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                    data-bs-target="#editModal${contract.id}">+
-            </button>
-          </td>
-          <td>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                    data-bs-target="#deleteModal${contract.id}">Attach facility list
-            </button>
-
-          </td>
-        </tr>
-      </c:forEach>
-      </tbody>
-    </table>
-  </div>
+    <div class="table-responsive">
+        <table class="table table-striped w-100" id="tableContract">
+            <thead style="vertical-align: top; text-align: center">
+            <tr class="text-center">
+                <th scope="col">#</th>
+                <th scope="col" class="text-center">Facility</th>
+                <th scope="col" class="text-center">Customer</th>
+                <th scope="col" class="text-center">Start day</th>
+                <th scope="col" class="text-center">End day</th>
+                <th scope="col" class="text-center">Deposit</th>
+                <th scope="col" class="text-center">Total cost</th>
+                <th scope="col" class="text-center">Attach facility</th>
+            </tr>
+            </thead>
+            <tbody>
+            <c:forEach var="contractVirtual" items="${contractVirtualList}">
+                <tr>
+                    <td>${contractVirtual.getId()}</td>
+                    <td>${contractVirtual.getFacility().getName()}</td>
+                    <td>${contractVirtual.getCustomer().getName()}</td>
+                    <td>${contractVirtual.getStartDay()}</td>
+                    <td>${contractVirtual.getEndDay()}</td>
+                    <td>${contractVirtual.getDeposit()}</td>
+                    <td>${contractVirtual.getTotalCost()}</td>
+                    <td>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#newContractDetailModal">+
+                        </button>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#attachFacilityList">Attach facility list
+                        </button>
+                    </td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
+    </div>
 </div>
 <%--modal edit--%>
-<div class="modal fade" id="editModal${employee.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Edit Customer</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body m-0 p-0">
+<div class="modal fade" id="newContractDetailModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body m-0 p-0">
 
-        <form class="form-horizontal" action="/customer?action=edit&id=${employee.id}" method="post">
+                <form class="form-horizontal" action="/contract?action=add" method="post">
 
-          <div class="row form-group align-items-center m-2">
-            <div class=" col-sm-4">
-              <label class="control-label" for="edit-id">ID:</label></div>
-            <div class="col-sm-8">
-              <p type="number" class="form-control" id="edit-id" name="${employee.id}">${employee.id}</p>
-            </div>
-          </div>
+                    <div class="row form-group align-items-center m-2">
+                        <div class=" col-sm-4">
+                            <label class="control-label" for="startDate">Start date:</label></div>
+                        <div class="col-sm-8">
+                            <input type="date" class="form-control" id="startDate" name="startDate">
+                        </div>
+                    </div>
 
-          <div class="row form-group align-items-center m-2">
-            <div class=" col-sm-4"><label class="control-label" for="edit-customer-type-id">Customer Type
-              Id:</label></div>
-            <div class="col-sm-8">
-              <input type="number" class="form-control" id="edit-customer-type-id"
-                     name="new-customer-type-id" value="${employee.customerTypeId}">
-            </div>
-          </div>
+                    <div class="row form-group align-items-center m-2">
+                        <div class=" col-sm-4">
+                            <label class="control-label" for="endDate">End date:</label></div>
+                        <div class="col-sm-8">
+                            <input type="date" class="form-control" id="endDate" name="endDate">
+                        </div>
+                    </div>
 
-          <div class="row form-group align-items-center m-2">
-            <div class=" col-sm-4"><label class="control-label" for="edit-name">Name:</label></div>
-            <div class="col-sm-8">
-              <input type="text" class="form-control" id="edit-name" name="new-name"
-                     value="${employee.name}">
-            </div>
-          </div>
+                    <div class="row form-group align-items-center m-2">
+                        <div class=" col-sm-4">
+                            <label class="control-label" for="deposit">Deposit:</label></div>
+                        <div class="col-sm-8">
+                            <input type="number" class="form-control" id="deposit" name="deposit">
+                        </div>
+                    </div>
 
-          <div class="row form-group align-items-center m-2">
-            <div class=" col-sm-4"><label class="control-label" for="edit-day-of-birth">Day Of
-              Birth:</label></div>
-            <div class="col-sm-8">
-              <input type="date" class="form-control" id="edit-day-of-birth" name="new-day-of-birth"
-                     value="${employee.dayOfBirth}">
-            </div>
-          </div>
+                    <div class="row form-group align-items-center m-2">
+                        <div class=" col-sm-4">
+                            <label class="control-label" for="totalCost">Total cost:</label></div>
+                        <div class="col-sm-8">
+                            <input type="number" class="form-control" id="totalCost" name="totalCost">
+                        </div>
+                    </div>
 
-          <div class="row form-group align-items-center m-2">
-            <div class=" col-sm-4"><label class="control-label">Gender:</label></div>
-            <div class="col-sm-8">
-              <select class="form-control w-25" name="edit-gender value="${employee.gender}">
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-              </select>
-            </div>
-          </div>
+                    <div class="row form-group align-items-center m-2">
+                        <div class=" col-sm-4">
+                            <label class="control-label" for="customerId">Customers rent service:</label></div>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="customerId" name="customerId">
+                        </div>
+                    </div>
 
-          <div class="row form-group align-items-center m-2">
-            <div class=" col-sm-4"><label class="control-label" for="edit-id-card">ID card:</label></div>
-            <div class="col-sm-8">
-              <input type="number" minlength="9" maxlength="12" class="form-control"
-                     name="new-id-card" id="edit-id-card" value="${employee.idCard}">
-            </div>
-          </div>
+                    <div class="row form-group align-items-center m-2">
+                        <div class=" col-sm-4">
+                            <label class="control-label" for="facilityId">Service:</label></div>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="facilityId" name="facilityId">
+                        </div>
+                    </div>
 
-          <div class="row form-group align-items-center m-2">
-            <div class=" col-sm-4"><label class="control-label" for="edit-phone-number">Phone
-              number:</label></div>
-            <div class="col-sm-8">
-              <input type="number" maxlength="10" minlength="9" class="form-control"
-                     name="new-phone-number" id="edit-phone-number" value="${employee.phoneNumber}">
-            </div>
-          </div>
+                    <div class="row form-group align-items-center m-2">
+                        <div class=" col-sm-4">
+                            <label class="control-label" for="attachFacilityId">Attach facility:</label></div>
+                        <div class="col-sm-8">
+                            <button class="btn btn-primary mx-4" id="attachFacilityId" name="attachFacilityId">+</button>
+                        </div>
+                    </div>
 
-          <div class="row form-group align-items-center m-2">
-            <div class=" col-sm-4"><label class="control-label" for="edit-email">Email:</label></div>
-            <div class="col-sm-8">
-              <input type="email" class="form-control" id="edit-email" name="new-email"
-                     value="${employee.email}">
+                    <div class="form-group">
+                        <div class="d-flex justify-content-center">
+                            <button type="button" class="btn btn-secondary m-1" data-bs-dismiss="modal">Cancel
+                            </button>
+                            <button type="submit" class="btn btn-primary m-1">Create contract
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
-          </div>
-
-          <div class="row form-group align-items-center m-2">
-            <div class=" col-sm-4"><label class="control-label" for="edit-address">Address:</label></div>
-            <div class="col-sm-8">
-              <input type="text" class="form-control" id="edit-address" name="new-address"
-                     value="${employee.address}">
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="d-flex justify-content-center">
-              <button type="submit" class="btn btn-success">Submit</button>
-            </div>
-          </div>
-        </form>
-      </div>
+        </div>
     </div>
-  </div>
 </div>
-<%--modal delete--%>
+<%--modal attach  Facility List--%>
 
-<div class="modal fade" id="deleteModal${employee.id}" tabindex="-1"
+<div class="modal fade" id="attachFacilityList" tabindex="-1"
      aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Delete customer</h5>
-      </div>
-      <div class="modal-body">
-        Are you sure you want to delete customer ${employee.name}?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel
-        </button>
-        <form action="/customer?action=delete&id=${employee.id}" method="post"><button type="submit" class="btn btn-primary">Delete
-        </button></form>
-      </div>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Attach Facility List</h5>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel
+                </button>
+                <form action="#" method="post">
+                    <button type="submit" class="btn btn-primary">Ok
+                    </button>
+                </form>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
+
+<script src="../../bootstrap-5.1.3-dist/js/bootstrap.js"></script>
+<%-- phân trang--%>
+<script src="../../jquery/jquery-3.5.1.min.js"></script>
+<script src="../../datatables/js/jquery.dataTables.min.js"></script>
+<script src="../../datatables/js/dataTables.bootstrap5.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#tableContract').dataTable({
+            "dom": 'lrtip',
+            "lengthChange": false,
+            "pageLength": 5
+        });
+
+    });
+</script>
 </body>
 </html>
