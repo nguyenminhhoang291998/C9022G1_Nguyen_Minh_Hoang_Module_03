@@ -1,7 +1,7 @@
 package com.example.case_study.models.contract;
 
 import com.example.case_study.models.Customer;
-import com.example.case_study.models.Facility;
+import com.example.case_study.models.facility.Facility;
 import com.example.case_study.models.contract_detail.ContractDetailVirtual;
 
 import java.sql.Date;

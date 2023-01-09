@@ -2,6 +2,7 @@ package com.example.case_study.services.contract.impl;
 
 import com.example.case_study.models.contract.Contract;
 import com.example.case_study.models.contract.ContractVirtual;
+import com.example.case_study.models.contract_detail.ContractDetail;
 import com.example.case_study.repository.contract.IContractRepository;
 import com.example.case_study.repository.contract.impl.ContractRepository;
 import com.example.case_study.services.contract.IContractService;
@@ -33,5 +34,10 @@ public class ContractService implements IContractService {
     @Override
     public Contract findContract(int id) {
         return this.contractRepository.findContract(id);
+    }
+
+    @Override
+    public boolean addContractDetail(ContractDetail contractDetail) {
+        return this.contractRepository.addContractDetail(contractDetail);
     }
 }

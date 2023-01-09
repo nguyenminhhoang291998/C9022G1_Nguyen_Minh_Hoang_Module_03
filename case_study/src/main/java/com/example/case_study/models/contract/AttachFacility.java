@@ -7,6 +7,11 @@ public class AttachFacility {
     private String unit;
     private String status;
 
+    public AttachFacility(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public AttachFacility(String name, double cost) {
         this.name = name;
         this.cost = cost;

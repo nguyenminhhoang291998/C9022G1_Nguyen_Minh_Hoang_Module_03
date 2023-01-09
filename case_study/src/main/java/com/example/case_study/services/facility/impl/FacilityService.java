@@ -1,6 +1,6 @@
 package com.example.case_study.services.facility.impl;
 
-import com.example.case_study.models.Facility;
+import com.example.case_study.models.facility.Facility;
 import com.example.case_study.repository.facility.IFacilityRepository;
 import com.example.case_study.repository.facility.impl.FacilityRepository;
 import com.example.case_study.services.facility.IFacilityService;
@@ -32,5 +32,10 @@ public class FacilityService implements IFacilityService {
     @Override
     public Facility findFacility(int id) {
         return this.facilityRepository.findFacility(id);
+    }
+
+    @Override
+    public List<Facility> findAllFacilityIdName() {
+        return this.facilityRepository.findAllFacilityIdName();
     }
 }

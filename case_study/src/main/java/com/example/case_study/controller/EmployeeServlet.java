@@ -25,7 +25,7 @@ public class EmployeeServlet extends HttpServlet {
         if (action == null) {
             action = "";
         }
-        switch (action){
+        switch (action) {
             default:
                 showListEmployee(request, response);
                 break;
@@ -46,14 +46,14 @@ public class EmployeeServlet extends HttpServlet {
         int educationDegreeId = Integer.parseInt(request.getParameter("editEducationDegreeId"));
         int division = Integer.parseInt(request.getParameter("editDivisionId"));
         String userName = request.getParameter("editUserName");
-        if(this.employeeService.findEmployee(id) != null){
+        if (this.employeeService.findEmployee(id) != null) {
             boolean check = this.employeeService.editEmployee(new Employee(id, name, dayOfBirth, idCard, salary, phoneNumber, email, address, positionId, educationDegreeId, division, userName));
             if (!check) {
                 request.setAttribute("message", "Edit failed!");
             } else {
                 request.setAttribute("message", "Edit successful!");
             }
-        }else {
+        } else {
             request.setAttribute("message", "Edit failed because id already not exists!");
         }
         showListEmployee(request, response);
@@ -61,11 +61,15 @@ public class EmployeeServlet extends HttpServlet {
 
     private void deleteEmployee(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("deleteId"));
-        boolean check = this.employeeService.deleteEmployee(id);
-        if(check){
-            request.setAttribute("message", "Delete successful!");
-        }else {
-            request.setAttribute("message", "Delete failed!");
+        if (this.employeeService.findEmployee(id) != null) {
+            boolean check = this.employeeService.deleteEmployee(id);
+            if (check) {
+                request.setAttribute("message", "Delete successful!");
+            } else {
+                request.setAttribute("message", "Delete failed!");
+            }
+        } else {
+            request.setAttribute("message", "Delete failed because id already not exists!");
         }
         showListEmployee(request, response);
     }
@@ -83,14 +87,14 @@ public class EmployeeServlet extends HttpServlet {
         int educationDegreeId = Integer.parseInt(request.getParameter("newEducationDegreeId"));
         int divisionId = Integer.parseInt(request.getParameter("newDivisionId"));
         String userName = request.getParameter("newUserName");
-        if(this.employeeService.findEmployee(id) == null){
+        if (this.employeeService.findEmployee(id) == null) {
             boolean check = this.employeeService.addEmployee(new Employee(id, name, dayOfBirth, idCard, salary, phoneNumber, email, address, positionId, educationDegreeId, divisionId, userName));
-            if(!check){
+            if (!check) {
                 request.setAttribute("message", "Add failed!");
-            }else {
+            } else {
                 request.setAttribute("message", "Add successful!");
             }
-        }else {
+        } else {
             request.setAttribute("message", "Add failed because id already exists!");
         }
         showListEmployee(request, response);

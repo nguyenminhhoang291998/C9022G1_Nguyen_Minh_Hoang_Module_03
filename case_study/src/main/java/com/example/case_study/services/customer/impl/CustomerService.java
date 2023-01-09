@@ -32,4 +32,9 @@ public class CustomerService implements ICustomerService {
     public Customer findCustomer(int id){
         return this.customerRepository.findCustomer(id);
     }
+
+    @Override
+    public List<Customer> findAllCustomerIdName() {
+        return this.customerRepository.findAllCustomerIdName();
+    }
 }

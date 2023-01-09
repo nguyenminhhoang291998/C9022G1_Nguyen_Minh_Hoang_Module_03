@@ -10,6 +10,7 @@ import java.util.List;
 
 public class CustomerRepository implements ICustomerRepository {
     private static final String SELECT_ALL_CUSTOMER = "select * from customer";
+    private static final String SELECT_ID_NAME_CUSTOMER = "select id,name from customer";
     private static final String INSERT_INTO_CUSTOMER_LIST = "INSERT INTO customer (id, customer_type_id, name, day_of_birth, gender, id_card, phone_number, email, address) values(?,?,?,?,?,?,?,?,?)";
     private static final String UPDATE_CUSTOMER = "UPDATE customer SET customer_type_id = ?, name = ?, day_of_birth = ?, gender = ?, id_card = ?, phone_number = ?, email = ?, address = ? WHERE id = ?";
     private static final String DELETE_CUSTOMER = "DELETE FROM customer WHERE id = ?";
@@ -39,6 +40,23 @@ public class CustomerRepository implements ICustomerRepository {
         }
         return customerList;
     }
+    public List<Customer> findAllCustomerIdName(){
+        List<Customer> customerList = new ArrayList<>();
+        Connection connection = BaseRepository.getConnectDB();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ID_NAME_CUSTOMER);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                int id = resultSet.getInt(1);
+                String name = resultSet.getString(2);
+                customerList.add(new Customer(id,name));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return customerList;
+    }
+
 
     @Override
     public boolean addCustomer(Customer customer) {

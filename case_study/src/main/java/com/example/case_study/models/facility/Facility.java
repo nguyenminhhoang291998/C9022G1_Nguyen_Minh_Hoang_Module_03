@@ -1,4 +1,4 @@
-package com.example.case_study.models;
+package com.example.case_study.models.facility;
 
 public class Facility {
     private int id;

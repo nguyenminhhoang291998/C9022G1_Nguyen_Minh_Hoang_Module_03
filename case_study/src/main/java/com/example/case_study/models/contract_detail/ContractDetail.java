@@ -1,18 +1,9 @@
 package com.example.case_study.models.contract_detail;
 
 public class ContractDetail {
-    private int id;
     private int contractId;
     private int attachFacilityId;
     private int quantity;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public int getContractId() {
         return contractId;
@@ -38,8 +29,7 @@ public class ContractDetail {
         this.quantity = quantity;
     }
 
-    public ContractDetail(int id, int contractId, int attachFacilityId, int quantity) {
-        this.id = id;
+    public ContractDetail(int contractId, int attachFacilityId, int quantity) {
         this.contractId = contractId;
         this.attachFacilityId = attachFacilityId;
         this.quantity = quantity;

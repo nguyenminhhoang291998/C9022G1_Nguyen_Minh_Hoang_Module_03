@@ -11,4 +11,6 @@ public interface ICustomerRepository {
     boolean deleteCustomer(int id);
 
     Customer findCustomer(int id);
+
+    List<Customer> findAllCustomerIdName();
 }

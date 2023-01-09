@@ -12,6 +12,7 @@
     <title>Service</title>
     <link rel="stylesheet" href="../../bootstrap-5.1.3-dist/css/bootstrap.css">
     <link rel="stylesheet" href="../../css-home.css">
+    <link rel="stylesheet" href="../../css-form.css">
     <link rel="stylesheet" href="../../css-facility.css">
     <%--  phân trang--%>
     <link rel="stylesheet" href="../../bootstrap520/css/bootstrap.min.css">
@@ -19,6 +20,7 @@
 </head>
 <body>
 <c:import url="../home/navbar.jsp"></c:import>
+<h3 class="message">${message}</h3>
 <h2>Facility</h2>
 <div class="table-responsive">
     <table class="table table-striped" id="tableFacility">
@@ -68,7 +70,7 @@
     </table>
 </div>
 <div class="justify-content-center d-flex">
-    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addFacilityModal">Add</button>
+    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addFacilityModal">Add new Facility</button>
 
 </div>
 <%--modal edit--%>
@@ -92,28 +94,28 @@
                     <div class="m-2 row">
                         <label class="col-sm-4 col-form-label">Facility Name</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="nameEdit" name="name">
+                            <input type="text" class="form-control" id="nameEdit" name="nameEdit">
                         </div>
                     </div>
 
                     <div class="m-2 row">
                         <label class="col-sm-4 col-form-label">Area</label>
                         <div class="col-sm-8">
-                            <input type="number" class="form-control" id="areaEdit" name="area">
+                            <input type="number" class="form-control" id="areaEdit" name="areaEdit">
                         </div>
                     </div>
 
                     <div class="m-2 row">
                         <label class="col-sm-4 col-form-label">Cost</label>
                         <div class="col-sm-8">
-                            <input type="number" class="form-control" id="costEdit" name="cost">
+                            <input type="number" class="form-control" id="costEdit" name="costEdit">
                         </div>
                     </div>
 
                     <div class="m-2 row">
                         <label class="col-sm-4 col-form-label">Max People</label>
                         <div class="col-sm-8">
-                            <input type="number" class="form-control" id="maxPeopleEdit" name="maxPeople">
+                            <input type="number" class="form-control" id="maxPeopleEdit" name="maxPeopleEdit">
                         </div>
                     </div>
 
@@ -153,7 +155,7 @@
                         <div class="m-2 row">
                             <label class="col-sm-4 col-form-label">Pool area</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="poolAreaEdit" name="poolArea">
+                                <input type="text" class="form-control" id="poolAreaEdit" name="poolAreaEdit">
                             </div>
                         </div>
                     </div>
@@ -162,7 +164,7 @@
                         <div class="m-2 row align-items-center">
                             <label class="col-sm-4 col-form-label">Number Of Floors</label>
                             <div class="col-sm-8">
-                                <input type="number" class="form-control" id="numberOfFloorsEdit" name="numberOfFloors">
+                                <input type="number" class="form-control" id="numberOfFloorsEdit" name="numberOfFloorsEdit">
                             </div>
                         </div>
                     </div>
@@ -171,7 +173,7 @@
                         <div class="m-2 row">
                             <label class="col-sm-4 col-form-label">Facility free</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="facilityFreeEdit" name="facilityFree">
+                                <input type="text" class="form-control" id="facilityFreeEdit" name="facilityFreeEdit">
                             </div>
                         </div>
                     </div>
@@ -248,8 +250,9 @@
                         <label class="col-sm-4 col-form-label">Rent Type Name</label>
                         <div class="col-sm-8">
                             <select class="form-control" name="rentType" id="rentType">
-                                <c:forEach var="rt" items="${rentTypeList}">
-                                    <option value="${rt.id}" readonly>${rt.name}</option>
+                                <option value="0" readonly>Chọn kiểu thuê</option>
+                                <c:forEach var="rentType" items="${rentTypeList}">
+                                    <option value="${rentType.id}" readonly>${rentType.name}</option>
                                 </c:forEach>
                             </select>
                         </div>
@@ -277,7 +280,7 @@
                         <div class="m-2 row">
                             <label class="col-sm-4 col-form-label">Pool area</label>
                             <div class="col-sm-8">
-                                <input type="number" class="form-control" name="poolArea">
+                                <input type="number" value="0" class="form-control" name="poolArea">
                             </div>
                         </div>
                     </div>
@@ -408,7 +411,10 @@
             document.getElementById("formNumberOfFloorsEdit").style.display = 'none';
             document.getElementById("formFacilityFreeEdit").style.display = 'block';
         }
-
+    }
+    function infoDelete(id,name){
+        document.getElementById("deleteId").value = id;
+        document.getElementById("deleteName").innerText = name;
     }
 </script>
 </body>

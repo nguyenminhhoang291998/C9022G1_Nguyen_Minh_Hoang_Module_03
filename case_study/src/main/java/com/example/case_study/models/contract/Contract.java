@@ -3,24 +3,13 @@ package com.example.case_study.models.contract;
 import java.sql.Date;
 
 public class Contract {
-    private int id;
+
     private Date startDay;
     private Date endDay;
     private double deposit;
     private int employeeId;
     private int customerId;
     private int facilityId;
-
-    public Contract() {
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public Date getStartDay() {
         return startDay;
@@ -70,8 +59,7 @@ public class Contract {
         this.facilityId = facilityId;
     }
 
-    public Contract(int id, Date startDay, Date endDay, int deposit, int employeeId, int customerId, int facilityId) {
-        this.id = id;
+    public Contract( Date startDay, Date endDay, double deposit, int employeeId, int customerId, int facilityId) {
         this.startDay = startDay;
         this.endDay = endDay;
         this.deposit = deposit;

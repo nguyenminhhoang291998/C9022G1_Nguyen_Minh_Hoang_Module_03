@@ -12,7 +12,7 @@
     <title>Contract</title>
     <link rel="stylesheet" href="../../bootstrap-5.1.3-dist/css/bootstrap.css">
     <link rel="stylesheet" href="../../css-home.css">
-    <link rel="stylesheet" href="../../css-customer.css">
+    <link rel="stylesheet" href="../../css-form.css">
 
     <%--  phân trang--%>
     <link rel="stylesheet" href="../../bootstrap520/css/bootstrap.min.css">
@@ -20,13 +20,10 @@
 
 </head>
 <body>
+
 <c:import url="../home/navbar.jsp"></c:import>
 <h2>Contract</h2>
-<p class="message">
-    <c:if test='${requestScope["message"] != null}'>
-        <span class="message">${requestScope["message"]}</span>
-    </c:if>
-</p>
+<h3 class="message">${message}</h3>
 <div class="table-list">
     <div class="table-responsive">
         <table class="table table-striped w-100" id="tableContract">
@@ -53,17 +50,16 @@
                     <td>${contractVirtual.getDeposit()}</td>
                     <td>${contractVirtual.getTotalCost()}</td>
                     <td>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#newContractDetailModal">+
+                        <button type="button" onclick="showAttachFacility(${contractVirtual.id})" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#newAttachFacilityModal">+
                         </button>
-                        <button type="button" onclick="showAttachFacilityList(${contractVirtual.id})" class="btn btn-primary" data-bs-toggle="modal"
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                 data-bs-target="#attachFacilityList${contractVirtual.id}">Attach facility list
                         </button>
                     </td>
                 </tr>
 
-
-
+                <%--modal attach  Facility List--%>
 
                 <div class="modal fade" id="attachFacilityList${contractVirtual.id}" tabindex="-1"
                      aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -112,7 +108,7 @@
 
 
 
-<%--modal add--%>
+<%--modal add contract--%>
 <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
     <div class="modal-dialog">
@@ -155,17 +151,27 @@
 
                     <div class="row form-group align-items-center m-2">
                         <div class=" col-sm-4">
-                            <label class="control-label" for="customerId">Customers rent service:</label></div>
+                            <label class="control-label">Customers rent service:</label></div>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="customerId" name="customerId">
+                            <select class="form-control" name="customerId">
+                                <option value="0">Chọn khách hàng</option>
+                                <c:forEach var="customer" items="${customerList}">
+                                    <option value="${customer.id}">${customer.name}</option>
+                                </c:forEach>
+                            </select>
                         </div>
                     </div>
 
                     <div class="row form-group align-items-center m-2">
                         <div class=" col-sm-4">
-                            <label class="control-label" for="facilityId">Service:</label></div>
+                            <label class="control-label">Service:</label></div>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="facilityId" name="facilityId">
+                            <select class="form-control" name="facilityId">
+                                <option value="0">Chọn dịch vụ</option>
+                                <c:forEach var="facility" items="${facilityList}">
+                                    <option value="${facility.id}">${facility.name}</option>
+                                </c:forEach>
+                            </select>
                         </div>
                     </div>
 
@@ -190,7 +196,53 @@
         </div>
     </div>
 </div>
-<%--modal attach  Facility List--%>
+
+<%--modal add contract detail--%>
+<div class="modal fade" id="newAttachFacilityModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form class="form-horizontal" action="/contract?action=addAF" method="post">
+            <div class="modal-header d-flex justify-content-center">
+                <span>Add Attach Facility Into Contract Id </span>
+                <input class="bg-primary mx-2 text-center text-light" id="contractId" name="contractId" readonly style="width: 30px">
+            </div>
+            <div class="modal-body m-0 p-0">
+                    <div class="row form-group align-items-center m-2">
+                        <div class=" col-sm-4">
+                            <label class="control-label">Attach Facility:</label></div>
+                        <div class="col-sm-8">
+                            <select class="form-control" name="idAttachFacility">
+                                <option value="0">Chọn dịch vụ đi kèm</option>
+                                <c:forEach var="attachFacility" items="${attachFacilityList}">
+                                    <option value="${attachFacility.id}">${attachFacility.name}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row form-group align-items-center m-2">
+                        <div class=" col-sm-4">
+                            <label class="control-label" for="totalCost">Quantity:</label></div>
+                        <div class="col-sm-8">
+                            <input type="number" class="form-control" id="quantity" name="quantity">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="d-flex justify-content-center">
+                            <button type="button" class="btn btn-secondary m-1" data-bs-dismiss="modal">Cancel
+                            </button>
+                            <button type="submit" class="btn btn-primary m-1">Add
+                            </button>
+                        </div>
+                    </div>
+
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 
 
@@ -210,7 +262,8 @@
 
     });
 
-    function showAttachFacilityList(contractId) {
+    function showAttachFacility(id) {
+        document.getElementById("contractId").value = id;
     }
 </script>
 </body>

@@ -1,6 +1,6 @@
 package com.example.case_study.repository.facility.impl;
 
-import com.example.case_study.models.Facility;
+import com.example.case_study.models.facility.Facility;
 import com.example.case_study.repository.BaseRepository;
 import com.example.case_study.repository.facility.IFacilityRepository;
 
@@ -13,6 +13,8 @@ import java.util.List;
 
 public class FacilityRepository implements IFacilityRepository {
     private static final String SELECT_ALL_FACILITY = "select * from facility";
+
+    private static final String SELECT_ID_NAME_FACILITY = "select id,name from facility";
     private static final String INSERT_INTO_FACILITY_LIST = "INSERT INTO facility (id, name, area, cost, max_people, rent_type_id, facility_type_id ,standard_room , description_other_convenience, pool_area, number_of_floors, facility_free) values(?,?,?,?,?,?,?,?,?,?,?,?)";
     private static final String UPDATE_FACILITY = "UPDATE facility SET name = ?, area = ?,cost = ?, max_people = ? , rent_type_id = ?, facility_type_id = ?, standard_room = ? ,description_other_convenience = ? ,pool_area = ? ,number_of_floors = ? ,facility_free = ?  WHERE id = ?";
     private static final String DELETE_FACILITY = "DELETE FROM facility WHERE id = ?";
@@ -131,5 +133,23 @@ public class FacilityRepository implements IFacilityRepository {
             throw new RuntimeException(e);
         }
         return null;
+    }
+
+    @Override
+    public List<Facility> findAllFacilityIdName() {
+        List<Facility> facilityList = new ArrayList<>();
+        try {
+            Connection connection = BaseRepository.getConnectDB();
+            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ID_NAME_FACILITY);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                int id = resultSet.getInt(1);
+                String name = resultSet.getString(2);
+                facilityList.add(new Facility(id, name));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return facilityList;
     }
 }

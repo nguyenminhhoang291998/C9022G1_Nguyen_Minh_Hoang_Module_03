@@ -60,7 +60,6 @@
 }
 .navbar button{
     text-align: center;
-    width: 100px;
     height: 100%;
     background-color: #046056;
     border: none;
@@ -83,9 +82,9 @@
     margin-bottom: auto;
     margin-top: auto;
     height: 60px;
-    background-color: #0a8c7e;
+    background-color: #056e61;
     border-radius: 30px;
-    padding: 10px;
+    padding: 20px;
 }
 
 .search_input{

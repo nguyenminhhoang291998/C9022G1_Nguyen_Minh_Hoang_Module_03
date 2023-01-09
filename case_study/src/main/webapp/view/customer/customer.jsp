@@ -12,7 +12,7 @@
     <title>Customer</title>
     <link rel="stylesheet" href="../../bootstrap-5.1.3-dist/css/bootstrap.css">
     <link rel="stylesheet" href="../../css-home.css">
-    <link rel="stylesheet" href="../../css-customer.css">
+    <link rel="stylesheet" href="../../css-form.css">
     <%--  phân trang--%>
     <link rel="stylesheet" href="../../bootstrap520/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../datatables/css/dataTables.bootstrap5.min.css">
@@ -20,11 +20,7 @@
 <body>
 <c:import url="../home/navbar.jsp"></c:import>
 <h2>Customer</h2>
-<p class="message">
-    <c:if test='${requestScope["message"] != null}'>
-        <span class="message">${requestScope["message"]}</span>
-    </c:if>
-</p>
+<h3 class="message">${message}</h3>
 
 <div class="table-list">
     <div class="table-responsive">
@@ -80,7 +76,7 @@
     </div>
 </div>
 <div class="justify-content-center d-flex">
-    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addModal">Add</button>
+    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addModal">Add new Customer</button>
 
 </div>
 

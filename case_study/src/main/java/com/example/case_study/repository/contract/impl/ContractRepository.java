@@ -1,7 +1,8 @@
 package com.example.case_study.repository.contract.impl;
 
 import com.example.case_study.models.Customer;
-import com.example.case_study.models.Facility;
+import com.example.case_study.models.contract_detail.ContractDetail;
+import com.example.case_study.models.facility.Facility;
 import com.example.case_study.models.contract.AttachFacility;
 import com.example.case_study.models.contract.Contract;
 import com.example.case_study.models.contract.ContractVirtual;
@@ -16,9 +17,10 @@ import java.util.List;
 public class ContractRepository implements IContractRepository {
     private static final String SELECT_ALL_CONTRACT_JOIN = "CALL select_total_cost_by_contract_id()";
     private static final String SELECT_LIST_CONTRACT_DETAIL_BY_ID = "CALL select_attach_facility_by_id(?);";
-    private static final String INSERT_INTO_CONTRACT_LIST = "INSERT INTO customer (id, customer_type_id, name, day_of_birth, gender, id_card, phone_number, email, address) values(?,?,?,?,?,?,?,?,?)";
+    private static final String INSERT_INTO_CONTRACT_LIST = "INSERT INTO contract (start_date,end_date,deposit,employee_id,customer_id,facility_id)  values (?,?,?,?,?,?);";
+    private static final String INSERT_INTO_CONTRACT_DETAIL_LIST = "INSERT INTO contract_detail (contract_id,attach_facility_id,quantity) values (?,?,?);";
     private static final String UPDATE_CONTRACT = "UPDATE customer SET customer_type_id = ?, name = ?, day_of_birth = ?, gender = ?, id_card = ?, phone_number = ?, email = ?, address = ? WHERE id = ?";
-    private static final String DELETE_CONTRACT = "DELETE FROM customer WHERE id = ?";
+    private static final String DELETE_CONTRACT = "DELETE FROM customer WHERE id = ?;";
     private static final String FIND_CUSTOMER = "SELECT * FROM customer WHERE id = ?";
 
     @Override
@@ -69,7 +71,19 @@ public class ContractRepository implements IContractRepository {
 
     @Override
     public boolean addContract(Contract contract) {
-        return false;
+        Connection connection = BaseRepository.getConnectDB();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(INSERT_INTO_CONTRACT_LIST);
+            preparedStatement.setDate(1,contract.getStartDay());
+            preparedStatement.setDate(2,contract.getEndDay());
+            preparedStatement.setDouble(3,contract.getDeposit());
+            preparedStatement.setInt(4,contract.getEmployeeId());
+            preparedStatement.setInt(5,contract.getCustomerId());
+            preparedStatement.setInt(6,contract.getFacilityId());
+            return preparedStatement.executeUpdate() > 0;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
@@ -86,4 +100,19 @@ public class ContractRepository implements IContractRepository {
     public Contract findContract(int id) {
         return null;
     }
+
+    @Override
+    public boolean addContractDetail(ContractDetail contractDetail) {
+        Connection connection = BaseRepository.getConnectDB();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(INSERT_INTO_CONTRACT_DETAIL_LIST);
+            preparedStatement.setInt(1,contractDetail.getContractId());
+            preparedStatement.setInt(2,contractDetail.getAttachFacilityId());
+            preparedStatement.setInt(3,contractDetail.getQuantity());
+            return preparedStatement.executeUpdate() >0;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }
