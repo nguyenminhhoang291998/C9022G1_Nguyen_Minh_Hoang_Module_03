@@ -1,7 +1,6 @@
 package com.example.case_study.services.employee.impl;
 
-import com.example.case_study.models.Customer;
-import com.example.case_study.models.Employee;
+import com.example.case_study.models.employee.Employee;
 import com.example.case_study.repository.employee.IEmployeeRepository;
 import com.example.case_study.repository.employee.impl.EmployeeRepository;
 import com.example.case_study.services.employee.IEmployeeService;

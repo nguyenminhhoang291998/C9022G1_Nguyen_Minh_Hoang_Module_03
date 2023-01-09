@@ -2,8 +2,10 @@ package com.example.case_study.models.contract;
 
 import com.example.case_study.models.Customer;
 import com.example.case_study.models.Facility;
+import com.example.case_study.models.contract_detail.ContractDetailVirtual;
 
 import java.sql.Date;
+import java.util.List;
 
 public class ContractVirtual {
 
@@ -16,7 +18,18 @@ public class ContractVirtual {
     private Customer customer;
     private double totalCost;
 
-    public ContractVirtual(int id,Facility facility, Customer customer,  Date startDay, Date endDay, double deposit, double totalCost) {
+    private List<ContractDetailVirtual> contractDetailVirtualList;
+
+
+    public List<ContractDetailVirtual> getContractDetailVirtualList() {
+        return contractDetailVirtualList;
+    }
+
+    public void setContractDetailVirtualList(List<ContractDetailVirtual> contractDetailVirtualList) {
+        this.contractDetailVirtualList = contractDetailVirtualList;
+    }
+
+    public ContractVirtual(int id, Facility facility, Customer customer, Date startDay, Date endDay, double deposit, double totalCost, List<ContractDetailVirtual> contractDetailVirtualList) {
         this.id = id;
         this.startDay = startDay;
         this.endDay = endDay;
@@ -24,6 +37,7 @@ public class ContractVirtual {
         this.facility = facility;
         this.customer = customer;
         this.totalCost = totalCost;
+        this.contractDetailVirtualList = contractDetailVirtualList;
     }
 
     public int getId() {

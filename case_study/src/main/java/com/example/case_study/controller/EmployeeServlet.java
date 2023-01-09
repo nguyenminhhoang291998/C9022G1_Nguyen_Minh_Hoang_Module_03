@@ -1,21 +1,21 @@
 package com.example.case_study.controller;
 
-import com.example.case_study.models.Customer;
-import com.example.case_study.models.Employee;
+import com.example.case_study.models.employee.Employee;
 import com.example.case_study.services.employee.IEmployeeService;
+import com.example.case_study.services.employee.IPositionService;
 import com.example.case_study.services.employee.impl.EmployeeService;
+import com.example.case_study.services.employee.impl.PositionService;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
 
 @WebServlet(name = "EmployeeServlet", value = "/employee")
 public class EmployeeServlet extends HttpServlet {
     IEmployeeService employeeService = new EmployeeService();
+
+    IPositionService positionService = new PositionService();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -97,7 +97,9 @@ public class EmployeeServlet extends HttpServlet {
     }
 
     private void showListEmployee(HttpServletRequest request, HttpServletResponse response) {
+
         request.setAttribute("employeeList", this.employeeService.findAllEmployeeList());
+        request.setAttribute("positionList", this.positionService.findAllPosition());
         try {
             request.getRequestDispatcher("view/employee/employee.jsp").forward(request, response);
         } catch (ServletException | IOException e) {

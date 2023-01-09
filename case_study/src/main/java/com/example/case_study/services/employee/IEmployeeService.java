@@ -1,7 +1,6 @@
 package com.example.case_study.services.employee;
 
-import com.example.case_study.models.Customer;
-import com.example.case_study.models.Employee;
+import com.example.case_study.models.employee.Employee;
 
 import java.util.List;
 

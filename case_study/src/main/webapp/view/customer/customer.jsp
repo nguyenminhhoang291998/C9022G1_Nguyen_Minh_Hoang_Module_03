@@ -32,11 +32,11 @@
             <thead style="vertical-align: top; text-align: center">
             <tr>
                 <th scope="col" class="text-center">ID</th>
-                <th scope="col" class="text-center">Customer Type ID</th>
+<%--                <th scope="col" class="text-center">Customer Type ID</th>--%>
                 <th scope="col" class="text-center">Name</th>
                 <th scope="col" class="text-center">Day Of Birth</th>
                 <th scope="col" class="text-center">Gender</th>
-                <th scope="col" class="text-center">ID card</th>
+<%--                <th scope="col" class="text-center">ID card</th>--%>
                 <th scope="col" class="text-center">Phone Number</th>
                 <th scope="col" class="text-center">Email</th>
                 <th scope="col" class="text-center">Address</th>
@@ -48,7 +48,7 @@
             <c:forEach var="customer" items="${customerList}">
                 <tr>
                     <td>${customer.id}</td>
-                    <td>${customer.customerTypeId}</td>
+<%--                    <td>${customer.customerTypeId}</td>--%>
                     <td>${customer.name}</td>
                     <td>${customer.dayOfBirth}</td>
                     <c:if test="${customer.gender}">
@@ -57,7 +57,7 @@
                     <c:if test="${!customer.gender}">
                         <td>Nữ</td>
                     </c:if>
-                    <td>${customer.idCard}</td>
+<%--                    <td>${customer.idCard}</td>--%>
                     <td>${customer.phoneNumber}</td>
                     <td>${customer.email}</td>
                     <td>${customer.address}</td>

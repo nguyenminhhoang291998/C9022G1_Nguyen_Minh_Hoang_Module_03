@@ -56,18 +56,64 @@
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                 data-bs-target="#newContractDetailModal">+
                         </button>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#attachFacilityList">Attach facility list
+                        <button type="button" onclick="showAttachFacilityList(${contractVirtual.id})" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#attachFacilityList${contractVirtual.id}">Attach facility list
                         </button>
                     </td>
                 </tr>
+
+
+
+
+                <div class="modal fade" id="attachFacilityList${contractVirtual.id}" tabindex="-1"
+                     aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Attach Facility List Id ${contractVirtual.id}</h5>
+                            </div>
+
+                                <div class="modal-body p-3">
+                                    <div class="row">
+                                    <div class="col-md-2 border-end border-bottom text-center text-bg-primary">Id</div>
+                                    <div class="col-md-4 border-end border-bottom text-center text-bg-primary">Name</div>
+                                    <div class="col-md-4 border-end border-bottom text-center text-bg-primary">Cost</div>
+                                    <div class="col-md-2 border-end border-bottom text-center text-bg-primary">Quantity</div>
+                                    </div>
+                                    <c:forEach var="contractDetailVirtual" items="${contractVirtual.contractDetailVirtualList}">
+                                        <div class="row">
+                                            <div class="col-md-2 border-end border-bottom text-center">${contractDetailVirtual.contractId}</div>
+                                            <div class="col-md-4 border-end border-bottom text-center">${contractDetailVirtual.attachFacility.name}</div>
+                                            <div class="col-md-4 border-end border-bottom text-center">${contractDetailVirtual.attachFacility.cost}</div>
+                                            <div class="col-md-2 border-bottom text-center">${contractDetailVirtual.quantity}</div>
+                                        </div>
+                                    </c:forEach>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Ok
+                                    </button>
+                                </div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
             </c:forEach>
             </tbody>
         </table>
     </div>
 </div>
-<%--modal edit--%>
-<div class="modal fade" id="newContractDetailModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+
+<div class="justify-content-center d-flex">
+    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addModal">Add New Contract</button>
+</div>
+
+
+
+<%--modal add--%>
+<div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -146,27 +192,7 @@
 </div>
 <%--modal attach  Facility List--%>
 
-<div class="modal fade" id="attachFacilityList" tabindex="-1"
-     aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Attach Facility List</h5>
-            </div>
-            <div class="modal-body">
-                ...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel
-                </button>
-                <form action="#" method="post">
-                    <button type="submit" class="btn btn-primary">Ok
-                    </button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
+
 
 
 <script src="../../bootstrap-5.1.3-dist/js/bootstrap.js"></script>
@@ -183,6 +209,9 @@
         });
 
     });
+
+    function showAttachFacilityList(contractId) {
+    }
 </script>
 </body>
 </html>

@@ -39,6 +39,27 @@ public class FacilityServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getParameter("action");
+        if(action == null){
+            action = "";
+        }
+        switch (action){
+            case "add":
+                addFacility(request,response);
+        }
+    }
 
+    private void addFacility(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        String name = request.getParameter("name");
+        double area = Double.parseDouble(request.getParameter("cost"));
+        int maxPeople = Integer.parseInt(request.getParameter("maxPeople"));
+        int rentTypeId = Integer.parseInt(request.getParameter("rentType"));
+        int facilityTypeId = Integer.parseInt(request.getParameter("facilityTypeId"));
+        String standardRoom = request.getParameter("standardRoom");
+        String descriptionOtherConvenience = request.getParameter("description");
+        double poolArea = Double.parseDouble(request.getParameter("poolArea"));
+        int numberOfFloors = Integer.parseInt(request.getParameter("numberOfFloors"));
+        String facilityFree = request.getParameter("facilityFree");
     }
 }

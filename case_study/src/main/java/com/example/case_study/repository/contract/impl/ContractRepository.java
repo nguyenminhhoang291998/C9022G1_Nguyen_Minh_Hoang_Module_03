@@ -2,8 +2,10 @@ package com.example.case_study.repository.contract.impl;
 
 import com.example.case_study.models.Customer;
 import com.example.case_study.models.Facility;
+import com.example.case_study.models.contract.AttachFacility;
 import com.example.case_study.models.contract.Contract;
 import com.example.case_study.models.contract.ContractVirtual;
+import com.example.case_study.models.contract_detail.ContractDetailVirtual;
 import com.example.case_study.repository.BaseRepository;
 import com.example.case_study.repository.contract.IContractRepository;
 
@@ -13,6 +15,7 @@ import java.util.List;
 
 public class ContractRepository implements IContractRepository {
     private static final String SELECT_ALL_CONTRACT_JOIN = "CALL select_total_cost_by_contract_id()";
+    private static final String SELECT_LIST_CONTRACT_DETAIL_BY_ID = "CALL select_attach_facility_by_id(?);";
     private static final String INSERT_INTO_CONTRACT_LIST = "INSERT INTO customer (id, customer_type_id, name, day_of_birth, gender, id_card, phone_number, email, address) values(?,?,?,?,?,?,?,?,?)";
     private static final String UPDATE_CONTRACT = "UPDATE customer SET customer_type_id = ?, name = ?, day_of_birth = ?, gender = ?, id_card = ?, phone_number = ?, email = ?, address = ? WHERE id = ?";
     private static final String DELETE_CONTRACT = "DELETE FROM customer WHERE id = ?";
@@ -35,7 +38,8 @@ public class ContractRepository implements IContractRepository {
                 Date endDate = Date.valueOf(resultSet.getDate(7).toLocalDate());
                 double deposit = resultSet.getDouble(8);
                 double totalCost = resultSet.getDouble(9);
-                contractVirtualList.add(new ContractVirtual(contractId, new Facility(facilityId, facilityName), new Customer(customerId, customerName), startDate, endDate, deposit, totalCost));
+                List<ContractDetailVirtual> contractDetailVirtualList = getListContractVirtualById(contractId);
+                contractVirtualList.add(new ContractVirtual(contractId, new Facility(facilityId, facilityName), new Customer(customerId, customerName), startDate, endDate, deposit, totalCost, contractDetailVirtualList));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -43,6 +47,24 @@ public class ContractRepository implements IContractRepository {
         return contractVirtualList;
     }
 
+    private List<ContractDetailVirtual> getListContractVirtualById(int contractId) {
+        List<ContractDetailVirtual> contractDetailVirtualList = new ArrayList<>();
+        Connection connection = BaseRepository.getConnectDB();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_LIST_CONTRACT_DETAIL_BY_ID);
+            preparedStatement.setInt(1,contractId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                String attachFacilityName = resultSet.getString("attach_facility_name");
+                double attachFacilityCost = resultSet.getDouble("attach_facility_cost");
+                int quantity = resultSet.getInt("quantity");
+                contractDetailVirtualList.add(new ContractDetailVirtual(contractId,new AttachFacility(attachFacilityName,attachFacilityCost),quantity));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return contractDetailVirtualList;
+    }
 
 
     @Override

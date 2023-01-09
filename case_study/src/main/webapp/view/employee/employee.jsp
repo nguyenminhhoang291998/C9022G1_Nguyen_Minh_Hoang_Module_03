@@ -35,8 +35,8 @@
                 <th scope="col" class="text-center">ID</th>
                 <th scope="col" class="text-center">Name</th>
                 <th scope="col" class="text-center">Day Of Birth</th>
-                <th scope="col" class="text-center">ID card</th>
-                <th scope="col" class="text-center">Salary</th>
+<%--                <th scope="col" class="text-center">ID card</th>--%>
+<%--                <th scope="col" class="text-center">Salary</th>--%>
                 <th scope="col" class="text-center">Phone Number</th>
                 <th scope="col" class="text-center">Email</th>
                 <th scope="col" class="text-center">Address</th>
@@ -50,8 +50,8 @@
                     <td>${employee.id}</td>
                     <td>${employee.name}</td>
                     <td>${employee.dayOfBirth}</td>
-                    <td>${employee.idCard}</td>
-                    <td>${employee.salary}</td>
+<%--                    <td>${employee.idCard}</td>--%>
+<%--                    <td>${employee.salary}</td>--%>
                     <td>${employee.phoneNumber}</td>
                     <td>${employee.email}</td>
                     <td>${employee.address}</td>
@@ -152,10 +152,15 @@
                     </div>
 
                     <div class="row form-group align-items-center m-2">
-                        <div class=" col-sm-4"><label class="control-label" for="newPositionId">Position Id:</label></div>
+                        <div class=" col-sm-4"><label class="control-label" >Position Id:</label></div>
                         <div class="col-sm-8">
-                            <input type="number" class="form-control" id="newPositionId" name="newPositionId"
-                                   placeholder="Enter position id">
+                            <select class="form-control">
+                                <option value="0">Chon vị trí</option>
+                                <c:forEach var="position" items="${positionList}">
+                                    <option value="${position.id}">${position.name}</option>
+                                </c:forEach>
+
+                            </select>
                         </div>
                     </div>
 
