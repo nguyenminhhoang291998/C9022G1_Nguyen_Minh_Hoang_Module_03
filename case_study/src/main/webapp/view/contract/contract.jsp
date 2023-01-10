@@ -137,7 +137,8 @@
                         <div class=" col-sm-4">
                             <label class="control-label" for="deposit">Deposit:</label></div>
                         <div class="col-sm-8">
-                            <input type="number" class="form-control" id="deposit" name="deposit">
+                            <input required oninput="checkDeposit(this.value)" type="number" class="form-control" id="deposit" name="deposit">
+                            <span id="errorDeposit" class="ms-5"></span>
                         </div>
                     </div>
 
@@ -145,7 +146,7 @@
                         <div class=" col-sm-4">
                             <label class="control-label" for="totalCost">Total cost:</label></div>
                         <div class="col-sm-8">
-                            <input type="number" class="form-control" id="totalCost" name="totalCost">
+                            <input type="number" class="form-control" id="totalCost" name="totalCost" readonly>
                         </div>
                     </div>
 
@@ -187,7 +188,7 @@
                         <div class="d-flex justify-content-center">
                             <button type="button" class="btn btn-secondary m-1" data-bs-dismiss="modal">Cancel
                             </button>
-                            <button type="submit" class="btn btn-primary m-1">Create contract
+                            <button type="submit" id="buttonCreate" disabled class="btn btn-primary m-1">Create contract
                             </button>
                         </div>
                     </div>
@@ -223,9 +224,9 @@
 
                     <div class="row form-group align-items-center m-2">
                         <div class=" col-sm-4">
-                            <label class="control-label" for="totalCost">Quantity:</label></div>
+                            <label class="control-label">Quantity:</label></div>
                         <div class="col-sm-8">
-                            <input type="number" class="form-control" id="quantity" name="quantity">
+                            <input required pattern="^[1-9]\d*$" title="Số lượng phải là số nguyên dương" type="number" class="form-control" id="quantity" name="quantity">
                         </div>
                     </div>
 
@@ -264,6 +265,15 @@
 
     function showAttachFacility(id) {
         document.getElementById("contractId").value = id;
+    }
+    function checkDeposit(deposit){
+        if(deposit < 0){
+            document.getElementById("errorDeposit").innerText = "Tiền đặt cọc phải là số dương"
+            document.getElementById("buttonCreate").disabled = true;
+        }else {
+            document.getElementById("errorDeposit").innerText = ""
+            document.getElementById("buttonCreate").disabled = false;
+        }
     }
 </script>
 </body>

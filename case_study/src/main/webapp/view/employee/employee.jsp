@@ -117,7 +117,7 @@
                     <div class="row form-group align-items-center m-2">
                         <div class=" col-sm-4"><label class="control-label" for="newIdCard">ID card:</label></div>
                         <div class="col-sm-8">
-                            <input type="number" minlength="9" maxlength="12" class="form-control"
+                            <input  required pattern="^\d{9}(\d{3})?$" title="Số CMND chưa đúng định dạng" type="number" minlength="9" maxlength="12" class="form-control"
                                    name="newIdCard" id="newIdCard" placeholder="Enter ID card">
                         </div>
                     </div>
@@ -134,7 +134,7 @@
                         <div class=" col-sm-4"><label class="control-label" for="newPhoneNumber">Phone
                             number:</label></div>
                         <div class="col-sm-8">
-                            <input type="number" maxlength="10" minlength="9" class="form-control"
+                            <input required pattern="^([(]84[)][+])?09[0-1]\d{7}$" title="Số điện thoại chưa đúng định dạng" type="number" maxlength="10" minlength="9" class="form-control"
                                    name="newPhoneNumber" id="newPhoneNumber" placeholder="Enter phone number">
                         </div>
                     </div>
@@ -150,7 +150,7 @@
                     <div class="row form-group align-items-center m-2">
                         <div class=" col-sm-4"><label class="control-label" for="newEmail">Email:</label></div>
                         <div class="col-sm-8">
-                            <input type="email" class="form-control" id="newEmail" name="newEmail"
+                            <input  required pattern="^[a-zA-Z0-9]+@[a-zA-Z0-9]+([.][a-zA-Z0-9]+)+$" title="Email chưa đúng định dạng"  type="email" class="form-control" id="newEmail" name="newEmail"
                                    placeholder="Enter email">
                         </div>
                     </div>
@@ -251,14 +251,14 @@
                     <div class="row form-group align-items-center m-2">
                         <div class=" col-sm-4"><label class="control-label" for="editIdCard">ID card:</label></div>
                         <div class="col-sm-8">
-                            <input type="number" minlength="9" maxlength="12" class="form-control" name="editIdCard" id="editIdCard">
+                            <input required pattern="^\d{9}(\d{3})?$" title="Số CMND chưa đúng định dạng" type="number" minlength="9" maxlength="12" class="form-control" name="editIdCard" id="editIdCard">
                         </div>
                     </div>
 
                     <div class="row form-group align-items-center m-2">
                         <div class=" col-sm-4"><label class="control-label" for="editSalary">Salary:</label></div>
                         <div class="col-sm-8">
-                            <input type="text" minlength="9" maxlength="12" class="form-control" name="editSalary" id="editSalary">
+                            <input required pattern="^\d*([.]\d+)?$" title="Lương phải là số dương" type="text" minlength="9" maxlength="12" class="form-control" name="editSalary" id="editSalary">
                         </div>
                     </div>
 
@@ -266,14 +266,14 @@
                         <div class=" col-sm-4"><label class="control-label" for="editPhoneNumber">Phone
                             number:</label></div>
                         <div class="col-sm-8">
-                            <input type="number" maxlength="10" minlength="9" class="form-control" name="editPhoneNumber" id="editPhoneNumber">
+                            <input required pattern="^([(]84[)][+])?09[0-1]\d{7}$" title="Số điện thoại chưa đúng định dạng" type="number" maxlength="10" minlength="9" class="form-control" name="editPhoneNumber" id="editPhoneNumber">
                         </div>
                     </div>
 
                     <div class="row form-group align-items-center m-2">
                         <div class=" col-sm-4"><label class="control-label" for="editEmail">Email:</label></div>
                         <div class="col-sm-8">
-                            <input type="email" class="form-control" id="editEmail" name="editEmail">
+                            <input  required pattern="^[a-zA-Z0-9]+@[a-zA-Z0-9]+([.][a-zA-Z0-9]+)+$" title="Email chưa đúng định dạng"  type="email" class="form-control" id="editEmail" name="editEmail">
                         </div>
                     </div>
 

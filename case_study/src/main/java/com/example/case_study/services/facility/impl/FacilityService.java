@@ -5,7 +5,9 @@ import com.example.case_study.repository.facility.IFacilityRepository;
 import com.example.case_study.repository.facility.impl.FacilityRepository;
 import com.example.case_study.services.facility.IFacilityService;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class FacilityService implements IFacilityService {
     IFacilityRepository facilityRepository = new FacilityRepository();
@@ -37,5 +39,16 @@ public class FacilityService implements IFacilityService {
     @Override
     public List<Facility> findAllFacilityIdName() {
         return this.facilityRepository.findAllFacilityIdName();
+    }
+
+    public Map<String,String> checkValida(Facility facility){
+        Map<String,String> errorMap = new HashMap<>();
+        if(facility.getCost() < 0){
+            errorMap.put("cost","Tiền phải lớn hơn 0");
+        }
+        if(facility.getNumberOfFloors() < 0){
+            errorMap.put("numberOfFloors","Số tầng phải lớn hơn 0");
+        }
+        return errorMap;
     }
 }

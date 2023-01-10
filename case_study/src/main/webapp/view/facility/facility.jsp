@@ -109,7 +109,7 @@
                     <div class="m-2 row">
                         <label class="col-sm-4 col-form-label">Cost</label>
                         <div class="col-sm-8">
-                            <input type="number" class="form-control" id="costEdit" name="costEdit">
+                            <input required pattern="^\d*([.]\d+)?$" title="Giá phải là số dương" type="number" class="form-control" id="costEdit" name="costEdit">
                         </div>
                     </div>
 
@@ -165,7 +165,7 @@
                         <div class="m-2 row align-items-center">
                             <label class="col-sm-4 col-form-label">Number Of Floors</label>
                             <div class="col-sm-8">
-                                <input type="number" class="form-control" id="numberOfFloorsEdit" name="numberOfFloorsEdit">
+                                <input required pattern="^[1-9]\d*$" title="Số tầng phải là số nguyên dương" type="number" class="form-control" id="numberOfFloorsEdit" name="numberOfFloorsEdit">
                             </div>
                         </div>
                     </div>
@@ -218,11 +218,10 @@
                         </div>
                     </div>
 
-
                     <div class="m-2 row">
                         <label class="col-sm-4 col-form-label">Facility Name</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="name" name="name">
+                            <input required pattern="^[A-Z][a-z0-9\s]*$" title="Tên chưa đúng định dạng" type="text" class="form-control" id="name" name="name">
                         </div>
                     </div>
 
@@ -236,7 +235,7 @@
                     <div class="m-2 row">
                         <label class="col-sm-4 col-form-label">Cost</label>
                         <div class="col-sm-8">
-                            <input type="number" class="form-control" id="cost" name="cost">
+                            <input  required pattern="^\d*([.]\d+)?$" title="Tiền phải là số dương" type="number" class="form-control" id="cost" name="cost">
                         </div>
                     </div>
 
@@ -290,7 +289,7 @@
                         <div class="m-2 row align-items-center">
                             <label class="col-sm-4 col-form-label">Number Of Floors</label>
                             <div class="col-sm-8">
-                                <input type="number" class="form-control" name="numberOfFloors">
+                                <input  required pattern="^[1-9]\d*$" title="Số tầng phải là số nguyên dương"  type="number" class="form-control" name="numberOfFloors">
                             </div>
                         </div>
                     </div>

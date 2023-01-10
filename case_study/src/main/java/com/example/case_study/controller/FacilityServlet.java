@@ -10,6 +10,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.util.Map;
 
 @WebServlet(name = "FacilityServlet", value = "/facility")
 public class FacilityServlet extends HttpServlet {
@@ -120,8 +121,9 @@ public class FacilityServlet extends HttpServlet {
         double poolArea = Double.parseDouble(request.getParameter("poolArea"));
         int numberOfFloors = Integer.parseInt(request.getParameter("numberOfFloors"));
         String facilityFree = request.getParameter("facilityFree");
+        Facility facility = new Facility(id, name, area, cost, maxPeople, rentTypeId, facilityTypeId, standardRoom, descriptionOtherConvenience, poolArea, numberOfFloors, facilityFree);
         if (this.facilityService.findFacility(id) == null) {
-            boolean check = this.facilityService.addFacility(new Facility(id, name, area, cost, maxPeople, rentTypeId, facilityTypeId, standardRoom, descriptionOtherConvenience, poolArea, numberOfFloors, facilityFree));
+            boolean check = this.facilityService.addFacility(facility);
             if (!check) {
                 request.setAttribute("message", "Add failed!");
             } else {
@@ -133,3 +135,4 @@ public class FacilityServlet extends HttpServlet {
         showListFacility(request, response);
     }
 }
+
