@@ -1,6 +1,5 @@
 package com.example.case_study;
 
-import main.Sum;
 
 import java.io.*;
 import javax.servlet.http.*;

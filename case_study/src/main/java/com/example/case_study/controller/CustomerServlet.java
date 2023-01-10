@@ -104,7 +104,7 @@ public class CustomerServlet extends HttpServlet {
         String dayOfBirth = request.getParameter("newDayOfBirth");
         boolean gender = false;
         String newGender = request.getParameter("newGender");
-        if (Objects.equals(newGender, "male")) {
+        if (Objects.equals(newGender, "1")) {
             gender = true;
         }
         String idCard = request.getParameter("newIdCard");

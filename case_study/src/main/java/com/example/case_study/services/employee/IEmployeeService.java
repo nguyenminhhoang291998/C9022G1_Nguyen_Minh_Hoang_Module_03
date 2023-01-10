@@ -11,4 +11,5 @@ public interface IEmployeeService {
     boolean deleteEmployee(int id);
 
     Employee findEmployee(int id);
+    List<Employee> findAllEmployeeListByNameAndFacility(String findName, String findAddress);
 }

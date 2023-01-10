@@ -130,10 +130,8 @@
                     <div class="row form-group align-items-center m-2">
                         <div class=" col-sm-4"><label class="control-label">Gender:</label></div>
                         <div class="col-sm-8">
-                            <select class="form-control w-25" name="newGender">
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
-                            </select>
+                            <label for="gender1"><input class="ms-3 me-1" checked type="radio" name="newGender" id="gender1" value="1">Nam</label>
+                            <label for="gender2"><input class="ms-3 me-1" type="radio" name="newGender" id="gender2" value="0">Nữ</label>
                         </div>
                     </div>
 
@@ -226,10 +224,8 @@
                     <div class="row form-group align-items-center m-2">
                         <div class=" col-sm-4"><label class="control-label">Gender:</label></div>
                         <div class="col-sm-8">
-                            <select class="form-control w-25" name="editGender" id="editGender">
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
-                            </select>
+                            <label for="male"><input class="ms-3 me-1" type="radio" name="editGender" id="male" value="1">Nam</label>
+                            <label for="female"><input class="ms-3 me-1" type="radio" name="editGender" id="female" value="0">Nữ</label>
                         </div>
                     </div>
 
@@ -304,11 +300,17 @@
         document.getElementById("editCustomerTypeId").value = customerTypeId;
         document.getElementById("editName").value = name;
         document.getElementById("editDayOfBirth").value = dayOfBirth;
-        document.getElementById("editGender").value = gender;
         document.getElementById("editIdCard").value = idCard;
         document.getElementById("editPhoneNumber").value = phoneNumber;
         document.getElementById("editEmail").value = email;
         document.getElementById("editAddress").value = address;
+        if(gender === "true"){
+            document.getElementById("male").checked = true;
+            document.getElementById("female").checked = false;
+        }else {
+            document.getElementById("male").checked = false;
+            document.getElementById("female").checked = true;
+        }
     }
 </script>
 <script src="../../bootstrap-5.1.3-dist/js/bootstrap.js"></script>

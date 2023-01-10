@@ -88,13 +88,14 @@
 }
 
 .search_input{
+    padding-top: 1px;
     color: white;
     border: 0;
     outline: 0;
     background: none;
     width: 0;
     caret-color:lightblue;
-    line-height: 40px;
+    line-height: 30px;
     transition: width 0.4s linear;
 }
 ::placeholder{
@@ -116,7 +117,7 @@
 
 .search_icon{
     height: 40px;
-    width: 40px;
+    /*width: 40px;*/
     float: right;
     display: flex;
     justify-content: center;

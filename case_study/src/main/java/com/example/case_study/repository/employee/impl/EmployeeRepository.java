@@ -17,6 +17,13 @@ public class EmployeeRepository implements IEmployeeRepository {
     private static final String UPDATE_EMPLOYEE = "UPDATE employee SET name = ?, day_of_birth = ?, id_card = ?, salary = ? , phone_number = ?, email = ?, address = ? ,position_id = ? ,education_degree_id = ? ,division_id = ? ,username = ?  WHERE id = ?";
     private static final String DELETE_EMPLOYEE = "DELETE FROM employee WHERE id = ?";
     private static final String FIND_EMPLOYEE = "SELECT * FROM employee WHERE id = ?";
+    private static final String FIND_EMPLOYEE_BY_NAME_AND_FACILITY = "\n" +
+            "SELECT e.* FROM employee e \n" +
+            "join contract c on e.id = c.employee_id\n" +
+            "join facility f on f.id = c.facility_id\n" +
+            " WHERE e.name like ? and f.name like ?;";
+
+
 
     @Override
     public List<Employee> findAllEmployeeList() {
@@ -129,5 +136,34 @@ public class EmployeeRepository implements IEmployeeRepository {
             throw new RuntimeException(e);
         }
         return null;
+    }
+
+    public List<Employee> findAllEmployeeListByNameAndFacility(String findName, String findAddress) {
+        List<Employee> employeeList = new ArrayList<>();
+        Connection connection = BaseRepository.getConnectDB();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(FIND_EMPLOYEE_BY_NAME_AND_FACILITY);
+            preparedStatement.setString(1,"%" +findName +"%");
+            preparedStatement.setString(2,"%" +findAddress +"%");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                int id = resultSet.getInt(1);
+                String name = resultSet.getString(2);
+                String dayOfBirth = resultSet.getString(3);
+                String idCard = resultSet.getString(4);
+                double salary = resultSet.getDouble(5);
+                String phoneNumber = resultSet.getString(6);
+                String email = resultSet.getString(7);
+                String address = resultSet.getString(8);
+                int positionId = resultSet.getInt(9);
+                int educationDegreeId = resultSet.getInt(10);
+                int divisionId = resultSet.getInt(11);
+                String userName = resultSet.getString(12);
+                employeeList.add(new Employee(id, name, dayOfBirth, idCard, salary, phoneNumber, email, address, positionId, educationDegreeId, divisionId, userName));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return employeeList;
     }
 }

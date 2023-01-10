@@ -12,7 +12,7 @@ import java.util.List;
 
 public class StudentRepository implements IStudentRepository {
     private final String SELECT_ALL ="select * from student";
-    private final String SEARCH ="select s.*, c.name as class_name from student s join `class` c on s.class_id=c.id where s.name like ? and s.class_id like ?;";
+    private final String SEARCH ="select s.*, c.name as class_name from student s join clazz c on s.class_id=c.id where s.name like ? and s.class_id like ?;";
     private final String SELECT_ALL_JOIN ="select s.*,c.name as class_name FROM student s join clazz c on s.class_id=c.id";
     private final String DELETE_BY_ID ="call delete_student_by_id(?)";
     private final String INSERT_INTO ="insert into student(name,gender,point,class_id) values(?,?,?,?)";
@@ -35,7 +35,7 @@ public class StudentRepository implements IStudentRepository {
         // kêt nối db để lấy ra listStudent rồi return
         Connection connection = BaseRepository.getConnectDB();
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL);
+            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_JOIN);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){
               int id = resultSet.getInt("id");// id là tên của cột

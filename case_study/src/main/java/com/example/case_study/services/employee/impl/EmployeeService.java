@@ -33,4 +33,8 @@ public class EmployeeService implements IEmployeeService {
     public Employee findEmployee(int id) {
         return employeeRepository.findEmployee(id);
     }
+
+    public List<Employee> findAllEmployeeListByNameAndFacility(String findName, String findAddress){
+        return this.employeeRepository.findAllEmployeeListByNameAndFacility(findName,findAddress);
+    }
 }

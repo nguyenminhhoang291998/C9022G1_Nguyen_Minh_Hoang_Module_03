@@ -123,8 +123,7 @@
                     </div>
 
                     <div class="row form-group align-items-center m-2">
-                        <div class=" col-sm-4"><label class="control-label" for="newSalary">Phone
-                            number:</label></div>
+                        <div class=" col-sm-4"><label class="control-label" for="newSalary">Salary:</label></div>
                         <div class="col-sm-8">
                             <input type="number" maxlength="10" minlength="9" class="form-control"
                                    name="newSalary" id="newSalary" placeholder="Enter salary">
@@ -141,6 +140,14 @@
                     </div>
 
                     <div class="row form-group align-items-center m-2">
+                        <div class=" col-sm-4"><label class="control-label" for="newAddress">Address:</label></div>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="newAddress" name="newAddress"
+                                   placeholder="Enter address">
+                        </div>
+                    </div>
+
+                    <div class="row form-group align-items-center m-2">
                         <div class=" col-sm-4"><label class="control-label" for="newEmail">Email:</label></div>
                         <div class="col-sm-8">
                             <input type="email" class="form-control" id="newEmail" name="newEmail"
@@ -149,9 +156,9 @@
                     </div>
 
                     <div class="row form-group align-items-center m-2">
-                        <div class=" col-sm-4"><label class="control-label" >Position Id:</label></div>
+                        <div class=" col-sm-4"><label class="control-label" >Position:</label></div>
                         <div class="col-sm-8">
-                            <select class="form-control">
+                            <select class="form-control" name="newPositionId">
                                 <option value="0">Chon vị trí</option>
                                 <c:forEach var="position" items="${positionList}">
                                     <option value="${position.id}">${position.name}</option>
@@ -162,18 +169,28 @@
                     </div>
 
                     <div class="row form-group align-items-center m-2">
-                        <div class=" col-sm-4"><label class="control-label" for="newEducationDegreeId">Education Degree Id:</label></div>
+                        <div class=" col-sm-4"><label class="control-label">Education Degree:</label></div>
                         <div class="col-sm-8">
-                            <input type="number" class="form-control" id="newEducationDegreeId" name="newEducationDegreeId"
-                                   placeholder="Enter education degree id">
+                            <select class="form-control" name="newEducationDegreeId">
+                                <option value="0">Chon trình độ</option>
+                                <c:forEach var="educationDegree" items="${educationDegreeList}">
+                                    <option value="${educationDegree.id}">${educationDegree.name}</option>
+                                </c:forEach>
+
+                            </select>
                         </div>
                     </div>
 
                     <div class="row form-group align-items-center m-2">
-                        <div class=" col-sm-4"><label class="control-label" for="newDivisionId">Division Id:</label></div>
+                        <div class=" col-sm-4"><label class="control-label">Division:</label></div>
                         <div class="col-sm-8">
-                            <input type="number" class="form-control" id="newDivisionId" name="newDivisionId"
-                                   placeholder="Enter division id">
+                            <select class="form-control" name="newDivisionId">
+                                <option value="0">Chon bộ phận</option>
+                                <c:forEach var="division" items="${divisionList}">
+                                    <option value="${division.id}">${division.name}</option>
+                                </c:forEach>
+
+                            </select>
                         </div>
                     </div>
 
@@ -268,23 +285,35 @@
                     </div>
 
                     <div class="row form-group align-items-center m-2">
-                        <div class=" col-sm-4"><label class="control-label" for="editPositionId">Position Id:</label></div>
+                        <div class=" col-sm-4"><label class="control-label" for="editPositionId">Position:</label></div>
                         <div class="col-sm-8">
-                            <input type="number" class="form-control" id="editPositionId" name="editPositionId">
+                        <select class="form-control" id="editPositionId" name="editPositionId">
+                            <c:forEach var="position" items="${positionList}">
+                                <option value="${position.id}">${position.name}</option>
+                            </c:forEach>
+                        </select>
                         </div>
                     </div>
 
                     <div class="row form-group align-items-center m-2">
-                        <div class=" col-sm-4"><label class="control-label" for="editEducationDegreeId">Education Degree Id:</label></div>
+                        <div class=" col-sm-4"><label class="control-label" for="editEducationDegreeId">Education Degree:</label></div>
                         <div class="col-sm-8">
-                            <input type="number" class="form-control" id="editEducationDegreeId" name="editEducationDegreeId">
+                            <select class="form-control" id="editEducationDegreeId" name="editEducationDegreeId">
+                                <c:forEach var="educationDegree" items="${educationDegreeList}">
+                                    <option value="${educationDegree.id}">${educationDegree.name}</option>
+                                </c:forEach>
+                            </select>
                         </div>
                     </div>
 
                     <div class="row form-group align-items-center m-2">
-                        <div class=" col-sm-4"><label class="control-label" for="editDivisionId">Division Id:</label></div>
+                        <div class=" col-sm-4"><label class="control-label" for="editDivisionId">Division:</label></div>
                         <div class="col-sm-8">
-                            <input type="number" class="form-control" id="editDivisionId" name="editDivisionId">
+                            <select class="form-control" id="editDivisionId" name="editDivisionId">
+                                <c:forEach var="division" items="${divisionList}">
+                                    <option value="${division.id}">${division.name}</option>
+                                </c:forEach>
+                            </select>
                         </div>
                     </div>
 

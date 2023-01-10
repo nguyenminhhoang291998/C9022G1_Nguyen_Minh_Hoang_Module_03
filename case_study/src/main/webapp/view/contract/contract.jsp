@@ -30,8 +30,8 @@
             <thead style="vertical-align: top; text-align: center">
             <tr class="text-center">
                 <th scope="col">#</th>
-                <th scope="col" class="text-center">Facility</th>
-                <th scope="col" class="text-center">Customer</th>
+                <th scope="col" class="text-center">Facility Name</th>
+                <th scope="col" class="text-center">Customer Name</th>
                 <th scope="col" class="text-center">Start day</th>
                 <th scope="col" class="text-center">End day</th>
                 <th scope="col" class="text-center">Deposit</th>
@@ -175,13 +175,13 @@
                         </div>
                     </div>
 
-                    <div class="row form-group align-items-center m-2">
-                        <div class=" col-sm-4">
-                            <label class="control-label" for="attachFacilityId">Attach facility:</label></div>
-                        <div class="col-sm-8">
-                            <button class="btn btn-primary mx-4" id="attachFacilityId" name="attachFacilityId">+</button>
-                        </div>
-                    </div>
+<%--                    <div class="row form-group align-items-center m-2">--%>
+<%--                        <div class=" col-sm-4">--%>
+<%--                            <label class="control-label" for="attachFacilityId">Attach facility:</label></div>--%>
+<%--                        <div class="col-sm-8">--%>
+<%--                            <button class="btn btn-primary mx-4" id="attachFacilityId" name="attachFacilityId">+</button>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
 
                     <div class="form-group">
                         <div class="d-flex justify-content-center">

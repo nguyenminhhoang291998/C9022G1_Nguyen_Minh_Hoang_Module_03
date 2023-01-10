@@ -1,10 +1,10 @@
 package com.example.case_study.controller;
 
 import com.example.case_study.models.employee.Employee;
+import com.example.case_study.services.employee.IEducationDegreeService;
 import com.example.case_study.services.employee.IEmployeeService;
 import com.example.case_study.services.employee.IPositionService;
-import com.example.case_study.services.employee.impl.EmployeeService;
-import com.example.case_study.services.employee.impl.PositionService;
+import com.example.case_study.services.employee.impl.*;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -17,6 +17,10 @@ public class EmployeeServlet extends HttpServlet {
 
     IPositionService positionService = new PositionService();
 
+    IEducationDegreeService educationDegreeService = new EducationDegreeService();
+
+    IDivisionService divisionService = new DivisionService();
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
@@ -26,9 +30,25 @@ public class EmployeeServlet extends HttpServlet {
             action = "";
         }
         switch (action) {
+            case "find":
+                showListEmployeeByNameAddress(request,response);
             default:
                 showListEmployee(request, response);
                 break;
+        }
+
+    }
+
+    private void showListEmployeeByNameAddress(HttpServletRequest request, HttpServletResponse response) {
+        String nameEmployeeFind = request.getParameter("nameFind");
+        String nameFacilityFind = request.getParameter("nameFacilityFind");
+        request.setAttribute("employeeList",this.employeeService.findAllEmployeeListByNameAndFacility(nameEmployeeFind,nameFacilityFind));
+        try {
+            request.getRequestDispatcher("view/employee/employee.jsp").forward(request, response);
+        } catch (ServletException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
 
     }
@@ -102,6 +122,8 @@ public class EmployeeServlet extends HttpServlet {
 
     private void showListEmployee(HttpServletRequest request, HttpServletResponse response) {
 
+        request.setAttribute("educationDegreeList", this.educationDegreeService.findAllEducationDegree());
+        request.setAttribute("divisionList", this.divisionService.findAllDivision());
         request.setAttribute("employeeList", this.employeeService.findAllEmployeeList());
         request.setAttribute("positionList", this.positionService.findAllPosition());
         try {

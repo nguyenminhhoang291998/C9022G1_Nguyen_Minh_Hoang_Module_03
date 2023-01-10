@@ -20,11 +20,17 @@
 
     <input oninput="checkName(this.value)" name="name" placeholder="nhập tên">
     <span id="errorName"></span>
+    <c:if test="${errorMap!=null}">
+        <span style="color: red">${errorMap.get('name')}</span>
+    </c:if>
     <br>
 
     <input type="radio" name="gender" value="true"> Nam
     <input type="radio" name="gender" value="false"> Nữ<br>
-    <input type="number" name="point" placeholder="nhập điểm" required><br>
+    <input type="number" value="0" name="point" placeholder="nhập điểm" required>
+    <c:if test="${errorMap!=null}">
+        <span style="color: red">${errorMap.get('point')}</span><br>
+    </c:if>
     <select name="classId">
         <option value="0">Chon lớp</option>
         <c:forEach var="clazz" items="${clazzList}">

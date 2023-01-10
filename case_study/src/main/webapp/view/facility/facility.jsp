@@ -73,6 +73,7 @@
     <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addFacilityModal">Add new Facility</button>
 
 </div>
+
 <%--modal edit--%>
 <div class="modal fade" id="editFacilityModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -137,7 +138,7 @@
                         <div class="m-2 row">
                             <label class="col-sm-4 col-form-label">Standard Room</label>
                             <div class="col-sm-8">
-                                <input type="number" class="form-control" id="standardRoomEdit" name="standardRoomEdit">
+                                <input type="text" class="form-control" id="standardRoomEdit" name="standardRoomEdit">
                             </div>
                         </div>
                     </div>

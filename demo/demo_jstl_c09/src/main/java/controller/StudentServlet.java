@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @WebServlet(name = "StudentServlet",urlPatterns = {"/student"})
 public class StudentServlet extends HttpServlet {
@@ -76,10 +77,11 @@ public class StudentServlet extends HttpServlet {
         int classId = Integer.parseInt(request.getParameter("classId"));
         Clazz clazz = new Clazz(classId);
         Student1 student = new Student1(name,gender,point,clazz);
-        boolean check =studentService.save(student);
-        String mess ="Thêm mới thành công";
-        if (!check){
+        Map<String,String> errorMap =studentService.save(student);
+        String mess ="Thêm mới  thành công";
+        if (!errorMap.isEmpty()){
             mess= "Thêm mới không thành công";
+            request.setAttribute("errorMap", errorMap);
         }
         request.setAttribute("mess", mess);
         showFormCreate(request,response);
