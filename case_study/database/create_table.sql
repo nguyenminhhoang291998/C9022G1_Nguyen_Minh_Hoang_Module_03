@@ -164,3 +164,11 @@ DELIMITER ;
 
 select  id ,  name from  attach_facility;
 
+select id,name from customer;
+
+INSERT INTO contract (start_date,end_date,deposit,employee_id,customer_id,facility_id)  values ('2022-09-01','2022-08-27',34,1,1,3);
+
+SELECT e.*, f.name FROM employee e 
+join contract c on e.id = c.employee_id
+join facility f on f.id = c.facility_id
+ WHERE e.name like '%A%' and f.name like '%Room%';

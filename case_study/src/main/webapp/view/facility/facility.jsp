@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="../../bootstrap520/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../datatables/css/dataTables.bootstrap5.min.css">
 </head>
+
 <body>
 <c:import url="../home/navbar.jsp"></c:import>
 <h3 class="message">${message}</h3>
@@ -69,9 +70,11 @@
         </tbody>
     </table>
 </div>
-<div class="justify-content-center d-flex">
-    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addFacilityModal">Add new Facility</button>
 
+<div class="justify-content-center d-flex">
+    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addFacilityModal">Add new
+        Facility
+    </button>
 </div>
 
 <%--modal edit--%>
@@ -109,7 +112,8 @@
                     <div class="m-2 row">
                         <label class="col-sm-4 col-form-label">Cost</label>
                         <div class="col-sm-8">
-                            <input required pattern="^\d*([.]\d+)?$" title="Giá phải là số dương" type="number" class="form-control" id="costEdit" name="costEdit">
+                            <input required pattern="^\d*([.]\d+)?$" title="Giá phải là số dương" type="number"
+                                   class="form-control" id="costEdit" name="costEdit">
                         </div>
                     </div>
 
@@ -147,7 +151,8 @@
                         <div class="m-2 row align-items-center">
                             <label class="col-sm-4 col-form-label">Description Other Convenience</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="descriptionOtherConvenienceEdit" name="descriptionEdit">
+                                <input type="text" class="form-control" id="descriptionOtherConvenienceEdit"
+                                       name="descriptionEdit">
                             </div>
                         </div>
                     </div>
@@ -165,7 +170,9 @@
                         <div class="m-2 row align-items-center">
                             <label class="col-sm-4 col-form-label">Number Of Floors</label>
                             <div class="col-sm-8">
-                                <input required pattern="^[1-9]\d*$" title="Số tầng phải là số nguyên dương" type="number" class="form-control" id="numberOfFloorsEdit" name="numberOfFloorsEdit">
+                                <input required pattern="^[1-9]\d*$" title="Số tầng phải là số nguyên dương"
+                                       type="number" class="form-control" id="numberOfFloorsEdit"
+                                       name="numberOfFloorsEdit">
                             </div>
                         </div>
                     </div>
@@ -221,7 +228,8 @@
                     <div class="m-2 row">
                         <label class="col-sm-4 col-form-label">Facility Name</label>
                         <div class="col-sm-8">
-                            <input required pattern="^[A-Z][a-z0-9\s]*$" title="Tên chưa đúng định dạng" type="text" class="form-control" id="name" name="name">
+                            <input required pattern="^[A-Z][a-z0-9\s]*$" title="Tên chưa đúng định dạng" type="text"
+                                   class="form-control" id="name" name="name">
                         </div>
                     </div>
 
@@ -235,7 +243,8 @@
                     <div class="m-2 row">
                         <label class="col-sm-4 col-form-label">Cost</label>
                         <div class="col-sm-8">
-                            <input  required pattern="^\d*([.]\d+)?$" title="Tiền phải là số dương" type="number" class="form-control" id="cost" name="cost">
+                            <input required pattern="^\d*([.]\d+)?$" title="Tiền phải là số dương" type="number"
+                                   class="form-control" id="cost" name="cost">
                         </div>
                     </div>
 
@@ -289,7 +298,8 @@
                         <div class="m-2 row align-items-center">
                             <label class="col-sm-4 col-form-label">Number Of Floors</label>
                             <div class="col-sm-8">
-                                <input  required pattern="^[1-9]\d*$" title="Số tầng phải là số nguyên dương"  type="number" class="form-control" name="numberOfFloors">
+                                <input required pattern="^[1-9]\d*$" title="Số tầng phải là số nguyên dương"
+                                       type="number" class="form-control" name="numberOfFloors">
                             </div>
                         </div>
                     </div>
@@ -335,7 +345,6 @@
         </div>
     </div>
 </div>
-
 
 <script src="../../bootstrap-5.1.3-dist/js/bootstrap.js"></script>
 <%--Phân trang--%>
@@ -392,19 +401,19 @@
         document.getElementById("poolAreaEdit").value = poolArea;
         document.getElementById("numberOfFloorsEdit").value = numberOfFloors;
         document.getElementById("facilityFreeEdit").value = facilityFree;
-        if(facilityTypeId ==1 ){
+        if (facilityTypeId == 1) {
             document.getElementById("formStandardRoomEdit").style.display = 'block';
             document.getElementById("formDescriptionEdit").style.display = 'block';
             document.getElementById("formPoolAreaEdit").style.display = 'block';
             document.getElementById("formNumberOfFloorsEdit").style.display = 'block';
             document.getElementById("formFacilityFreeEdit").style.display = 'none';
-        }else if(facilityTypeId ==2){
+        } else if (facilityTypeId == 2) {
             document.getElementById("formStandardRoomEdit").style.display = 'block';
             document.getElementById("formDescriptionEdit").style.display = 'block';
             document.getElementById("formPoolAreaEdit").style.display = 'none';
             document.getElementById("formNumberOfFloorsEdit").style.display = 'block';
             document.getElementById("formFacilityFreeEdit").style.display = 'none';
-        }else if(facilityTypeId ==3){
+        } else if (facilityTypeId == 3) {
             document.getElementById("formStandardRoomEdit").style.display = 'none';
             document.getElementById("formDescriptionEdit").style.display = 'none';
             document.getElementById("formPoolAreaEdit").style.display = 'none';
@@ -412,11 +421,11 @@
             document.getElementById("formFacilityFreeEdit").style.display = 'block';
         }
     }
-    function infoDelete(id,name){
+
+    function infoDelete(id, name) {
         document.getElementById("deleteId").value = id;
         document.getElementById("deleteName").innerText = name;
     }
 </script>
 </body>
-
 </html>

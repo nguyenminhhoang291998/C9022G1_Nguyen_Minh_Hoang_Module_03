@@ -50,7 +50,8 @@
                     <td>${contractVirtual.getDeposit()}</td>
                     <td>${contractVirtual.getTotalCost()}</td>
                     <td>
-                        <button type="button" onclick="showAttachFacility(${contractVirtual.id})" class="btn btn-primary" data-bs-toggle="modal"
+                        <button type="button" onclick="showAttachFacility(${contractVirtual.id})"
+                                class="btn btn-primary" data-bs-toggle="modal"
                                 data-bs-target="#newAttachFacilityModal">+
                         </button>
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
@@ -66,34 +67,39 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Attach Facility List Id ${contractVirtual.id}</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Attach Facility List
+                                    Id ${contractVirtual.id}</h5>
                             </div>
 
-                                <div class="modal-body p-3">
-                                    <div class="row">
+                            <div class="modal-body p-3">
+                                <div class="row">
                                     <div class="col-md-2 border-end border-bottom text-center text-bg-primary">Id</div>
-                                    <div class="col-md-4 border-end border-bottom text-center text-bg-primary">Name</div>
-                                    <div class="col-md-4 border-end border-bottom text-center text-bg-primary">Cost</div>
-                                    <div class="col-md-2 border-end border-bottom text-center text-bg-primary">Quantity</div>
+                                    <div class="col-md-4 border-end border-bottom text-center text-bg-primary">Name
                                     </div>
-                                    <c:forEach var="contractDetailVirtual" items="${contractVirtual.contractDetailVirtualList}">
-                                        <div class="row">
-                                            <div class="col-md-2 border-end border-bottom text-center">${contractDetailVirtual.contractId}</div>
-                                            <div class="col-md-4 border-end border-bottom text-center">${contractDetailVirtual.attachFacility.name}</div>
-                                            <div class="col-md-4 border-end border-bottom text-center">${contractDetailVirtual.attachFacility.cost}</div>
-                                            <div class="col-md-2 border-bottom text-center">${contractDetailVirtual.quantity}</div>
-                                        </div>
-                                    </c:forEach>
+                                    <div class="col-md-4 border-end border-bottom text-center text-bg-primary">Cost
+                                    </div>
+                                    <div class="col-md-2 border-end border-bottom text-center text-bg-primary">
+                                        Quantity
+                                    </div>
+                                </div>
+                                <c:forEach var="contractDetailVirtual"
+                                           items="${contractVirtual.contractDetailVirtualList}">
+                                    <div class="row">
+                                        <div class="col-md-2 border-end border-bottom text-center">${contractDetailVirtual.contractId}</div>
+                                        <div class="col-md-4 border-end border-bottom text-center">${contractDetailVirtual.attachFacility.name}</div>
+                                        <div class="col-md-4 border-end border-bottom text-center">${contractDetailVirtual.attachFacility.cost}</div>
+                                        <div class="col-md-2 border-bottom text-center">${contractDetailVirtual.quantity}</div>
+                                    </div>
+                                </c:forEach>
 
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Ok
                                     </button>
                                 </div>
-                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-
 
 
             </c:forEach>
@@ -103,9 +109,9 @@
 </div>
 
 <div class="justify-content-center d-flex">
-    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addModal">Add New Contract</button>
+    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addModal">Add New Contract
+    </button>
 </div>
-
 
 
 <%--modal add contract--%>
@@ -137,7 +143,8 @@
                         <div class=" col-sm-4">
                             <label class="control-label" for="deposit">Deposit:</label></div>
                         <div class="col-sm-8">
-                            <input required oninput="checkDeposit(this.value)" type="number" class="form-control" id="deposit" name="deposit">
+                            <input required oninput="checkDeposit(this.value)" type="number" class="form-control"
+                                   id="deposit" name="deposit">
                             <span id="errorDeposit" class="ms-5"></span>
                         </div>
                     </div>
@@ -176,13 +183,13 @@
                         </div>
                     </div>
 
-<%--                    <div class="row form-group align-items-center m-2">--%>
-<%--                        <div class=" col-sm-4">--%>
-<%--                            <label class="control-label" for="attachFacilityId">Attach facility:</label></div>--%>
-<%--                        <div class="col-sm-8">--%>
-<%--                            <button class="btn btn-primary mx-4" id="attachFacilityId" name="attachFacilityId">+</button>--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
+                    <%--                    <div class="row form-group align-items-center m-2">--%>
+                    <%--                        <div class=" col-sm-4">--%>
+                    <%--                            <label class="control-label" for="attachFacilityId">Attach facility:</label></div>--%>
+                    <%--                        <div class="col-sm-8">--%>
+                    <%--                            <button class="btn btn-primary mx-4" id="attachFacilityId" name="attachFacilityId">+</button>--%>
+                    <%--                        </div>--%>
+                    <%--                    </div>--%>
 
                     <div class="form-group">
                         <div class="d-flex justify-content-center">
@@ -204,11 +211,12 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <form class="form-horizontal" action="/contract?action=addAF" method="post">
-            <div class="modal-header d-flex justify-content-center">
-                <span>Add Attach Facility Into Contract Id </span>
-                <input class="bg-primary mx-2 text-center text-light" id="contractId" name="contractId" readonly style="width: 30px">
-            </div>
-            <div class="modal-body m-0 p-0">
+                <div class="modal-header d-flex justify-content-center">
+                    <span>Add Attach Facility Into Contract Id </span>
+                    <input class="bg-primary mx-2 text-center text-light" id="contractId" name="contractId" readonly
+                           style="width: 30px">
+                </div>
+                <div class="modal-body m-0 p-0">
                     <div class="row form-group align-items-center m-2">
                         <div class=" col-sm-4">
                             <label class="control-label">Attach Facility:</label></div>
@@ -226,7 +234,8 @@
                         <div class=" col-sm-4">
                             <label class="control-label">Quantity:</label></div>
                         <div class="col-sm-8">
-                            <input required pattern="^[1-9]\d*$" title="Số lượng phải là số nguyên dương" type="number" class="form-control" id="quantity" name="quantity">
+                            <input required pattern="^[1-9]\d*$" title="Số lượng phải là số nguyên dương" type="number"
+                                   class="form-control" id="quantity" name="quantity">
                         </div>
                     </div>
 
@@ -239,13 +248,11 @@
                         </div>
                     </div>
 
-            </div>
+                </div>
             </form>
         </div>
     </div>
 </div>
-
-
 
 
 <script src="../../bootstrap-5.1.3-dist/js/bootstrap.js"></script>
@@ -266,11 +273,12 @@
     function showAttachFacility(id) {
         document.getElementById("contractId").value = id;
     }
-    function checkDeposit(deposit){
-        if(deposit < 0){
+
+    function checkDeposit(deposit) {
+        if (deposit < 0) {
             document.getElementById("errorDeposit").innerText = "Tiền đặt cọc phải là số dương"
             document.getElementById("buttonCreate").disabled = true;
-        }else {
+        } else {
             document.getElementById("errorDeposit").innerText = ""
             document.getElementById("buttonCreate").disabled = false;
         }
